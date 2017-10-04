@@ -1,0 +1,20 @@
+<h1> Article details </h1>
+<a [routerLink]="['']"> Back to list </a>
+
+<div *ngIf="article">
+  <div class="article-thumbnail">
+    <img height="300" [src]="article.image" />
+  </div>
+  <button (click)="deleteArticle()">Delete this article</button>
+  <div class="article-info">
+    <h2> {{ article.name }}&nbsp;</h2>
+    <h3> {{ article.description }} </h3>
+
+    <!-- <div *ngIf="article.specs.length">
+      <h4> Features </h4>
+      <ul>
+        <li *ngFor="let spec of article.specs"> {{ spec&nbsp;}} </li>
+      </ul>
+    </div> -->
+  </div>
+</div>

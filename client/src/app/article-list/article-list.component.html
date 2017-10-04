@@ -1,0 +1,9 @@
+<h1> Article list </h1>
+<div *ngIf="articles">
+  <div *ngFor="let article of articles" class="article">
+    <img [src]="article.image" height=100/>
+    <h3> {{ article.name }} </h3>
+    <p> {{ article.description }} </p>
+    <a [routerLink]="['article-details', article._id]"> View Details </a>
+  </div>
+</div>
