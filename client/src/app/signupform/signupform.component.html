@@ -5,6 +5,12 @@
   <br>
   <label> Password </label>
   <input type="password" [(ngModel)]="formInfo.password" name="password"/>
+  <br>
+  <label> Email </label>
+  <input type="email" [(ngModel)]="formInfo.email" name="email"/>
+  <br>
+  <label> Phone </label>
+  <input type="tel" [(ngModel)]="formInfo.phone" name="phone"/>
 
   <button (click)="signup()"> signup </button>
 </form>

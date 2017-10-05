@@ -14,6 +14,7 @@ import { routes } from './routes';
 import { SignupformComponent } from './signupform/signupform.component';
 import { ArticleDetailsComponent } from './article-details/article-details.component';
 import { ArticleListComponent } from './article-list/article-list.component';
+import { CreateArticleComponent } from './create-article/create-article.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ArticleListComponent } from './article-list/article-list.component';
     UserprofileComponent,
     SignupformComponent,
     ArticleDetailsComponent,
-    ArticleListComponent
+    ArticleListComponent,
+    CreateArticleComponent
   ],
   imports: [
     BrowserModule,

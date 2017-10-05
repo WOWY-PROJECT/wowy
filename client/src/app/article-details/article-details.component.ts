@@ -32,11 +32,6 @@ export class ArticleDetailsComponent implements OnInit {
 }
 
 
-
-
-
-
-
   // deletePhone() {
   //   if (window.confirm('Are you sure?')) {
   //     this.phoneService.remove(this.phone._id)
