@@ -9,10 +9,10 @@ var authRoutes = express.Router();
 
 /* GET home page. */
 authRoutes.post('/signup', (req, res, next) => {
-  const {username, password} = req.body;
+  const {username, password, email, phone} = req.body;
 
-  if (!username || !password)
-    return res.status(400).json({ message: 'Provide username and password' });
+  if (!username || !password || !email || !phone)
+    return res.status(400).json({ message: 'Provide username, password, email and phone' });
 
   debug('Find user in DB');
 
@@ -25,7 +25,9 @@ authRoutes.post('/signup', (req, res, next) => {
     debug('creating user');
     const theUser = new User({
       username,
-      password: hashPass
+      password: hashPass,
+      email,
+      phone
     });
     return theUser.save()
     .then(user =>{
