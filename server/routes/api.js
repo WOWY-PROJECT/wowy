@@ -20,19 +20,24 @@ router.get('/articles', (req, res, next) => {
 });
 
 /* CREATE a new Article. */
-router.post('/articles', (req, res, next) => {
-  const {name, description, image, localization, date, reward, status} = req.body;
+const upload = require('../config/multer');
+router.post('/',upload.single('file'), (req, res, next) => {
   const theArticle = new Article({
-    name,description,localization, date, reward, status,
-    image: req.body.image || ''
-  });
-
-  theArticle.save()
-    .then( p => res.status(200).json({
-      message: 'New Article created!',
-      article: p
-    }))
-    .catch( e => res.status(500).json({error:e.message}));
+    name: req.body.name,
+    description: req.body.description,
+    date: req.body.date,
+    localization: req.body.localization,
+    reward: req.body.reward,
+    image: `/uploads/${req.file.filename}` || ''
+  }).save()
+  .then( article => {
+      console.log(`Se ha creado el telefono ID:${article._id}`);
+      res.json({
+        message: 'New Article created!',
+        id: article._id
+      });
+    })
+  .catch( e => res.json(e));
 });
 
 /* GET a single Article. */

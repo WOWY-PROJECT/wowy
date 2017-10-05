@@ -1,3 +1,17 @@
-<p>
-  create-article works!
-</p>
+<h1> Add a new article </h1>
+<a [routerLink]="['']"> Back to list </a>
+
+<form>
+  <fieldset>
+    <legend> Article info </legend>
+    <label> Name* </label>
+    <input type="text" [(ngModel)]="newArticle.name" name="name" required />
+
+    <label> Description* </label>
+    <input type="text" [(ngModel)]="newArticle.description" name="description" required />
+
+    <input type="file" name="file" ng2FileSelect [uploader]="uploader" />
+
+  </fieldset>
+  <button (click)="create()"> Create Article </button>
+</form>
