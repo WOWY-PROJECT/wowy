@@ -15,6 +15,7 @@ import { SignupformComponent } from './signupform/signupform.component';
 import { ArticleDetailsComponent } from './article-details/article-details.component';
 import { ArticleListComponent } from './article-list/article-list.component';
 import { CreateArticleComponent } from './create-article/create-article.component';
+import { FileUploadModule } from "ng2-file-upload";
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { CreateArticleComponent } from './create-article/create-article.componen
     CreateArticleComponent
   ],
   imports: [
+    FileUploadModule,
     BrowserModule,
     FormsModule,
     HttpModule,

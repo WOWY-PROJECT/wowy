@@ -10,8 +10,7 @@
     <label> Description* </label>
     <input type="text" [(ngModel)]="newArticle.description" name="description" required />
 
-    <input type="file" name="file" ng2FileSelect [uploader]="uploader" />
-
+ <input type="file" name="file"  id="file" ng2FileSelect [uploader]="uploader" />
   </fieldset>
   <button (click)="create()"> Create Article </button>
 </form>
