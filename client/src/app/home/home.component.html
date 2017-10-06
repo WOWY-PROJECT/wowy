@@ -3,19 +3,12 @@
 </div>
 
 
-<div *ngIf="!user">
+<div>
   <li><a [routerLink]="['/']">Home</a></li>
-  <li><a [routerLink]="['/login']">Login</a></li>
-  <li><a [routerLink]="['/signup']">Signup</a></li>
-  <li><a [routerLink]="['/article-list']">Article List</a></li>
-</div>
-
-<div *ngIf="user">
-  <li><a [routerLink]="['/']">Home</a></li>
-  <li><a [routerLink]="['/article-list']">Article List</a></li>
-  <button (click)="auth.logout().subscribe()">Logout</button>
-  <li><a [routerLink]="['/create-article']">Create Article</a></li>
-  <!-- <h2> You are now logged in as {{ user.username }}!! </h2>
-  <p> Here's the user object </p>
-  <pre> {{ user | json }} </pre> -->
+  <li *ngIf="!user"><a [routerLink]="['/login']">Login</a></li>
+  <li *ngIf="!user"><a [routerLink]="['/signup']">Signup</a></li>
+  <li *ngIf="!user"><a [routerLink]="['/article-list']">Article List</a></li>
+  <li *ngIf="user"><a [routerLink]="['/create-article']">Create Article</a></li>
+  <button *ngIf="user" (click)="logout()">Logout</button>
+  <!-- <p *ngIf="user">{{user}}</p> -->
 </div>
