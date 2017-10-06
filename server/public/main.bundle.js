@@ -43,7 +43,6 @@ module.exports = "<!--The content below is only a placeholder and can be replace
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_auth_service__ = __webpack_require__("../../../../../src/app/services/auth.service.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -55,13 +54,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-
 var AppComponent = (function () {
-    function AppComponent(auth) {
-        this.auth = auth;
+    function AppComponent() {
         this.title = 'angularauth';
     }
-    ;
     return AppComponent;
 }());
 AppComponent = __decorate([
@@ -70,10 +66,9 @@ AppComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/app.component.html"),
         styles: [__webpack_require__("../../../../../src/app/app.component.css")]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_auth_service__["a" /* AuthService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_auth_service__["a" /* AuthService */]) === "function" && _a || Object])
+    __metadata("design:paramtypes", [])
 ], AppComponent);
 
-var _a;
 //# sourceMappingURL=app.component.js.map
 
 /***/ }),
@@ -338,7 +333,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/create-article/create-article.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h1> Add a new article </h1>\n<a [routerLink]=\"['']\"> Back to list </a>\n\n<form>\n  <fieldset>\n    <legend> Article info </legend>\n    <label> Name* </label>\n    <input type=\"text\" [(ngModel)]=\"newArticle.name\" name=\"name\" required />\n\n    <label> Description* </label>\n    <input type=\"text\" [(ngModel)]=\"newArticle.description\" name=\"description\" required />\n\n <input type=\"file\" name=\"file\"  id=\"file\" ng2FileSelect [uploader]=\"uploader\" />\n  </fieldset>\n  <button (click)=\"create()\"> Create Article </button>\n</form>\n"
+module.exports = "<h1> Add a new article </h1>\n<a [routerLink]=\"['']\"> Back to list </a>\n\n<select name=\"\" form=\"createarticle\">\n  <option value=\"lost\">Lost</option>\n  <option value=\"found\" selected>Found</option>\n</select>\n\n<form id=\"createarticle\">\n    <label> Name* </label>\n    <input type=\"text\" [(ngModel)]=\"newArticle.name\" name=\"name\" required />\n\n    <label> Description* </label>\n    <input type=\"text\" [(ngModel)]=\"newArticle.description\" name=\"description\" required />\n\n    <label> Localization* </label>\n    <input type=\"text\" [(ngModel)]=\"newArticle.localization\" name=\"localization\" required />\n\n    <label> Date* </label>\n    <input type=\"date\" [(ngModel)]=\"newArticle.date\" name=\"date\" required />\n\n    <label> Reward* </label>\n    <input type=\"number\" [(ngModel)]=\"newArticle.reward\" name=\"reward\" required />\n\n <input type=\"file\" name=\"file\"  id=\"file\" ng2FileSelect [uploader]=\"uploader\" />\n  <button (click)=\"create()\"> Create Article </button>\n</form>\n"
 
 /***/ }),
 
@@ -435,7 +430,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/home/home.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div style=\"text-align:center\">\n  <h1>{{title}}</h1>\n</div>\n\n\n<div *ngIf=\"!user\">\n  <li><a [routerLink]=\"['/']\">Home</a></li>\n  <li><a [routerLink]=\"['/login']\">Login</a></li>\n  <li><a [routerLink]=\"['/signup']\">Signup</a></li>\n  <li><a [routerLink]=\"['/article-list']\">Article List</a></li>\n</div>\n\n<div *ngIf=\"user\">\n  <li><a [routerLink]=\"['/']\">Home</a></li>\n  <li><a [routerLink]=\"['/article-list']\">Article List</a></li>\n  <button (click)=\"auth.logout().subscribe()\">Logout</button>\n  <li><a [routerLink]=\"['/create-article']\">Create Article</a></li>\n  <!-- <h2> You are now logged in as {{ user.username }}!! </h2>\n  <p> Here's the user object </p>\n  <pre> {{ user | json }} </pre> -->\n</div>\n"
+module.exports = "<div style=\"text-align:center\">\n  <h1>{{title}}</h1>\n</div>\n\n\n<div>\n  <li><a [routerLink]=\"['/']\">Home</a></li>\n  <li *ngIf=\"!user\"><a [routerLink]=\"['/login']\">Login</a></li>\n  <li *ngIf=\"!user\"><a [routerLink]=\"['/signup']\">Signup</a></li>\n  <li *ngIf=\"!user\"><a [routerLink]=\"['/article-list']\">Article List</a></li>\n  <li *ngIf=\"user\"><a [routerLink]=\"['/create-article']\">Create Article</a></li>\n  <button *ngIf=\"user\" (click)=\"logout()\">Logout</button>\n  <!-- <p *ngIf=\"user\">{{user}}</p> -->\n</div>\n"
 
 /***/ }),
 
@@ -462,11 +457,22 @@ var HomeComponent = (function () {
         var _this = this;
         this.auth = auth;
         this.title = 'WOWY';
-        this.user = this.auth.getUser();
-        this.auth.getLoginEventEmitter()
-            .subscribe(function (user) { return _this.user = user; });
+        this.user = null;
+        // this.user = this.auth.getUser();
+        // this.auth.getLoginEventEmitter()
+        //     .subscribe( user => this.user=user );
+        this.auth.isLoggedIn()
+            .subscribe((function (user) { return _this.user = user; }), (function (err) {
+            _this.error = err;
+            _this.user = null;
+        }));
     }
     HomeComponent.prototype.ngOnInit = function () {
+    };
+    HomeComponent.prototype.logout = function () {
+        var _this = this;
+        this.auth.logout()
+            .subscribe(function (user) { return _this.user = null; });
     };
     return HomeComponent;
 }());
@@ -684,22 +690,23 @@ var AuthService = (function () {
         this.http = http;
         this.userLoginEvent = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
         this.options = { withCredentials: true };
-        this.isLoggedIn().subscribe();
+        console.log(BASEURL);
+        // this.isLoggedIn().subscribe()
     }
-    AuthService.prototype.getLoginEventEmitter = function () {
-        return this.userLoginEvent;
-    };
-    AuthService.prototype.getUser = function () {
-        return this.user;
-    };
+    // public getLoginEventEmitter():EventEmitter<any>{
+    //   return this.userLoginEvent
+    // }
+    //
+    // public getUser(){
+    //   return this.user
+    // }
     AuthService.prototype.emitUserLoginEvent = function (user) {
         this.user = user;
         this.userLoginEvent.emit(user);
         return user;
     };
     AuthService.prototype.handleError = function (e) {
-        console.log("AUTH ERROR");
-        return __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__["Observable"].throw(e.message);
+        return __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__["Observable"].throw(e.json().error);
     };
     AuthService.prototype.signup = function (username, password, email, phone) {
         var _this = this;
@@ -724,10 +731,8 @@ var AuthService = (function () {
             .catch(this.handleError);
     };
     AuthService.prototype.isLoggedIn = function () {
-        var _this = this;
         return this.http.get(BASEURL + "/loggedin", this.options)
             .map(function (res) { return res.json(); })
-            .map(function (user) { return _this.emitUserLoginEvent(user); })
             .catch(this.handleError);
     };
     return AuthService;
@@ -768,8 +773,8 @@ var IsLoggedInService = (function () {
     IsLoggedInService.prototype.canActivate = function () {
         console.log("Checking can activate");
         //return timeout(5).then(() => true);
-        //return this.auth.isLoggedIn().map(user => true)
-        return this.auth.getUser() ? true : false;
+        return this.auth.isLoggedIn().map(function (user) { return true; });
+        // return this.auth.getUser() ? true : false
         //return false;
     };
     return IsLoggedInService;
@@ -914,8 +919,7 @@ var UserprofileComponent = (function () {
     function UserprofileComponent(auth) {
         var _this = this;
         this.auth = auth;
-        this.user = this.auth.getUser();
-        this.auth.getLoginEventEmitter()
+        this.auth.isLoggedIn()
             .subscribe(function (user) { return _this.user = user; });
     }
     UserprofileComponent.prototype.ngOnInit = function () {
@@ -945,10 +949,14 @@ var _a;
 // The build system defaults to the dev environment which uses `environment.ts`, but if you do
 // `ng build --env=prod` then `environment.prod.ts` will be used instead.
 // The list of which env maps to which file can be found in `.angular-cli.json`.
+// export const environment = {
+//   production: false,
+//   BASE_URL: 'http://localhost:3000'
+// };
 // The file contents for the current environment will overwrite these during build.
 var environment = {
-    production: false,
-    BASE_URL: 'http://localhost:3000'
+    production: true,
+    BASE_URL: ''
 };
 //# sourceMappingURL=environment.js.map
 
