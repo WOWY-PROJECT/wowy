@@ -29,7 +29,7 @@ import { FileUploadModule } from "ng2-file-upload";
     CreateArticleComponent
   ],
   imports: [
-    FileUploadModule,
+    FileUploadModule, 
     BrowserModule,
     FormsModule,
     HttpModule,
