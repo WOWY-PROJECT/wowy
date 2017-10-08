@@ -1,14 +1,5 @@
+
+
 <div style="text-align:center">
   <h1>{{title}}</h1>
-</div>
-
-
-<div>
-  <li><a [routerLink]="['/']">Home</a></li>
-  <li *ngIf="!user"><a [routerLink]="['/login']">Login</a></li>
-  <li *ngIf="!user"><a [routerLink]="['/signup']">Signup</a></li>
-  <li *ngIf="!user"><a [routerLink]="['/article-list']">Article List</a></li>
-  <li *ngIf="user"><a [routerLink]="['/create-article']">Create Article</a></li>
-  <button *ngIf="user" (click)="logout()">Logout</button>
-  <!-- <p *ngIf="user">{{user}}</p> -->
 </div>
