@@ -20,6 +20,12 @@ export class ArticleService {
       .map((res) => res.json());
   }
 
+  createArticle(newArticle) {
+    console.log("entro en funcion")
+    return this.http.post(`${this.BASE_URL}/api`, this.options)
+      .map((res) => res.json());
+  }
+
   // edit(article) {
   //   return this.http.put(`${this.BASE_URL}/api/articles/${article.id}`, article)
   //     .map((res) => res.json());

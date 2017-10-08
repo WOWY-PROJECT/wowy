@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FileUploader} from "ng2-file-upload";
 import {environment} from '../../environments/environment';
 import { Router } from '@angular/router';
+import { ArticleService } from '../services/article.service';
 
 @Component({
   selector: 'app-create-article',
@@ -11,7 +12,7 @@ import { Router } from '@angular/router';
 export class CreateArticleComponent implements OnInit {
 
   uploader: FileUploader = new FileUploader({
-    url: `${environment.BASE_URL}/api/articles/`
+    url: `${environment.BASE_URL}/api/`
   });
 
   newArticle = {
@@ -22,7 +23,7 @@ export class CreateArticleComponent implements OnInit {
     reward: null
   };
 
-  constructor(public router:Router) { }
+  constructor(public router:Router, public articleService:ArticleService) { }
 
   ngOnInit() {
     this.uploader.onSuccessItem = (item, response) => {
@@ -34,6 +35,7 @@ export class CreateArticleComponent implements OnInit {
   }
 
   create(){
+    this.articleService.createArticle(this.newArticle)
     this.uploader.onBuildItemForm = (item, form) => {
       form.append('name', this.newArticle.name);
       form.append('description', this.newArticle.description);

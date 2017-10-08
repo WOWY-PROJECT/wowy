@@ -31,7 +31,6 @@ router.post('/',upload.single('file'), (req, res, next) => {
     image: `/uploads/${req.file.filename}` || ''
   }).save()
   .then( article => {
-      console.log(`Se ha creado el telefono ID:${article._id}`);
       res.json({
         message: 'New Article created!',
         id: article._id
