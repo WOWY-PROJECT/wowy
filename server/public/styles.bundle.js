@@ -97,7 +97,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "/* You can add global styles to this file, and also import other style files */\n", ""]);
+exports.push([module.i, "/* You can add global styles to this file, and also import other style files */\nbody { /* GRADIENT BG */ /* ff3.6+ */ /* safari4+,chrome */ /* safari5.1+,chrome10+ */ /* opera 11.10+ */ /* ie10+ */ background: linear-gradient(45deg, rgba(0,145,0,1) 0%, rgba(0,86,199,1) 100%); /* w3c */ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0056C7', endColorstr='#009100',GradientType=1 ); /* ie6-9 */}\n", ""]);
 
 // exports
 
