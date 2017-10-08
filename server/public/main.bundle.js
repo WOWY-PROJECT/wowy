@@ -34,7 +34,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n  <router-outlet></router-outlet>\n"
+module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n<nav class=\"navbar navbar-default\">\n  <div class=\"container-fluid\">\n    <!-- Brand and toggle get grouped for better mobile display -->\n    <div class=\"navbar-header\">\n      <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#bs-example-navbar-collapse-1\" aria-expanded=\"false\">\n        <span class=\"sr-only\">Toggle navigation</span>\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>\n      </button>\n      <!-- <a class=\"navbar-brand\" href=\"/\"><img src=\"https://imgur.com/a/CK6fx\" width=\"150px\" /></a> -->\n      <a class=\"navbar-brand\" href=\"#\">\n        <img alt=\"WOWY\" src=\"https://i.imgur.com/AnBbBFH.png\" />\n      </a>\n    </div>\n\n    <!-- Collect the nav links, forms, and other content for toggling -->\n    <div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">\n      <ul class=\"nav navbar-nav\">\n        <li class=\"active\"><a [routerLink]=\"['/']\">Home <span class=\"sr-only\">(current)</span></a></li>\n        <li *ngIf=\"!user\"><a [routerLink]=\"['/login']\">Login</a></li>\n        <li *ngIf=\"!user\"><a [routerLink]=\"['/signup']\">Signup</a></li>\n        <li *ngIf=\"!user\"><a [routerLink]=\"['/article-list']\">Article List</a></li>\n        <li *ngIf=\"user\"><a [routerLink]=\"['/create-article']\">Create Article</a></li>\n        <button *ngIf=\"user\" (click)=\"logout()\">Logout</button>\n      </ul>\n      <form class=\"navbar-form navbar-left\">\n        <div class=\"form-group\">\n          <input type=\"text\" class=\"form-control\" placeholder=\"Search\">\n        </div>\n        <button type=\"submit\" class=\"btn btn-default\">Submit</button>\n      </form>\n    </div><!-- /.navbar-collapse -->\n  </div><!-- /.container-fluid -->\n</nav>\n\n  <router-outlet></router-outlet>\n"
 
 /***/ }),
 
@@ -43,6 +43,7 @@ module.exports = "<!--The content below is only a placeholder and can be replace
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_auth_service__ = __webpack_require__("../../../../../src/app/services/auth.service.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -54,10 +55,29 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
 var AppComponent = (function () {
-    function AppComponent() {
-        this.title = 'angularauth';
+    function AppComponent(auth) {
+        var _this = this;
+        this.auth = auth;
+        this.title = 'WOWY';
+        this.user = null;
+        // this.user = this.auth.getUser();
+        // this.auth.getLoginEventEmitter()
+        //     .subscribe( user => this.user=user );
+        this.auth.isLoggedIn()
+            .subscribe((function (user) { return _this.user = user; }), (function (err) {
+            _this.error = err;
+            _this.user = null;
+        }));
     }
+    AppComponent.prototype.ngOnInit = function () {
+    };
+    AppComponent.prototype.logout = function () {
+        var _this = this;
+        this.auth.logout()
+            .subscribe(function (user) { return _this.user = null; });
+    };
     return AppComponent;
 }());
 AppComponent = __decorate([
@@ -66,9 +86,10 @@ AppComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/app.component.html"),
         styles: [__webpack_require__("../../../../../src/app/app.component.css")]
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_auth_service__["a" /* AuthService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_auth_service__["a" /* AuthService */]) === "function" && _a || Object])
 ], AppComponent);
 
+var _a;
 //# sourceMappingURL=app.component.js.map
 
 /***/ }),
@@ -333,7 +354,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/create-article/create-article.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h1> Add a new article </h1>\n<a [routerLink]=\"['']\"> Back to list </a>\n\n<select name=\"\" form=\"createarticle\">\n  <option value=\"lost\">Lost</option>\n  <option value=\"found\" selected>Found</option>\n</select>\n\n<form id=\"createarticle\">\n    <label> Name* </label>\n    <input type=\"text\" [(ngModel)]=\"newArticle.name\" name=\"name\" required />\n\n    <label> Description* </label>\n    <input type=\"text\" [(ngModel)]=\"newArticle.description\" name=\"description\" required />\n\n    <label> Localization* </label>\n    <input type=\"text\" [(ngModel)]=\"newArticle.localization\" name=\"localization\" required />\n\n    <label> Date* </label>\n    <input type=\"date\" [(ngModel)]=\"newArticle.date\" name=\"date\" required />\n\n    <label> Reward* </label>\n    <input type=\"number\" [(ngModel)]=\"newArticle.reward\" name=\"reward\" required />\n\n <input type=\"file\" name=\"file\"  id=\"file\" ng2FileSelect [uploader]=\"uploader\" />\n  <button (click)=\"create()\"> Create Article </button>\n</form>\n"
+module.exports = "<!-- <h1> Submit an article! </h1>\n<a [routerLink]=\"['']\"> Back to home </a> -->\n\n<!-- <select name=\"\" form=\"createarticle\">\n  <option value=\"lost\">Lost</option>\n  <option value=\"found\" selected>Found</option>\n</select>\n\n<form id=\"createarticle\">\n    <label> Name* </label>\n    <input type=\"text\" [(ngModel)]=\"newArticle.name\" name=\"name\" required />\n\n    <label> Description* </label>\n    <input type=\"text\" [(ngModel)]=\"newArticle.name\" name=\"description\" required />\n\n    <label> Localization* </label>\n    <input type=\"text\" [(ngModel)]=\"newArticle.localization\" name=\"localization\" required />\n\n    <label> Date* </label>\n    <input type=\"date\" [(ngModel)]=\"newArticle.date\" name=\"date\" required />\n\n    <label> Reward* </label>\n    <input type=\"number\" [(ngModel)]=\"newArticle.reward\" name=\"reward\" required />\n\n <input type=\"file\" name=\"file\"  id=\"file\" ng2FileSelect [uploader]=\"uploader\" />\n  <button (click)=\"create()\"> Create Article </button>\n</form> -->\n\n\n<div class=\"container\">\n\n    <form class=\"well form-horizontal\" action=\" \" method=\"post\"  id=\"contact_form\">\n<fieldset>\n\n<!-- Form Name -->\n<legend style=\"text-align: center;\">Submit an article!</legend>\n\n<!-- Text input-->\n\n<div class=\"form-group\">\n  <label class=\"col-md-4 control-label\">Name</label>\n  <div class=\"col-md-4 inputGroupContainer\">\n  <div class=\"input-group\">\n  <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-user\"></i></span>\n  <input [(ngModel)]=\"newArticle.name\" name=\"name\" placeholder=\"Name\" class=\"form-control\"  type=\"text\">\n    </div>\n  </div>\n</div>\n\n<!-- Text input-->\n\n<div class=\"form-group\">\n  <label class=\"col-md-4 control-label\" >Description</label>\n    <div class=\"col-md-4 inputGroupContainer\">\n    <div class=\"input-group\">\n  <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-pencil\"></i></span>\n  <input [(ngModel)]=\"newArticle.name\" name=\"description\" placeholder=\"Description\" class=\"form-control\"  type=\"text\">\n    </div>\n  </div>\n</div>\n\n<!-- Text input-->\n       <div class=\"form-group\">\n  <label class=\"col-md-4 control-label\">Localization</label>\n    <div class=\"col-md-4 inputGroupContainer\">\n    <div class=\"input-group\">\n        <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-map-marker\"></i></span>\n  <input [(ngModel)]=\"newArticle.localization\" name=\"localization\" placeholder=\"Localization\" class=\"form-control\"  type=\"text\">\n    </div>\n  </div>\n</div>\n\n\n<!-- Text input-->\n\n<div class=\"form-group\">\n  <label class=\"col-md-4 control-label\">Date</label>\n    <div class=\"col-md-4 inputGroupContainer\">\n    <div class=\"input-group\">\n        <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-calendar\"></i></span>\n  <input [(ngModel)]=\"newArticle.date\" name=\"date\" placeholder=\"Date\" class=\"form-control\" type=\"text\">\n    </div>\n  </div>\n</div>\n\n<!-- Text input-->\n\n<div class=\"form-group\">\n  <label class=\"col-md-4 control-label\">Reward</label>\n    <div class=\"col-md-4 inputGroupContainer\">\n    <div class=\"input-group\">\n        <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-usd\"></i></span>\n  <input [(ngModel)]=\"newArticle.reward\" name=\"reward\" placeholder=\"Reward\" class=\"form-control\" type=\"number\">\n    </div>\n  </div>\n</div>\n\n<!-- Select Basic -->\n\n<div class=\"form-group\">\n  <label class=\"col-md-4 control-label\">Lost or found?</label>\n    <div class=\"col-md-4 selectContainer\">\n    <div class=\"input-group\">\n        <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-list\"></i></span>\n    <select name=\"\" form=\"contact_form\" class=\"form-control selectpicker\" >\n      <option value=\" \" >Have you lost or found this item?</option>\n      <option>I have lost this item</option>\n      <option>I have found this item</option>\n    </select>\n  </div>\n</div>\n</div>\n\n\n\n<div class=\"form-group\">\n  <label class=\"col-md-4 control-label\">Upload image</label>\n    <div class=\"col-md-4 inputGroupContainer\">\n    <div class=\"input-group\">\n  <input type=\"file\" name=\"file\"  id=\"file\" ng2FileSelect [uploader]=\"uploader\" />\n    </div>\n  </div>\n</div>\n\n\n<!-- Button -->\n<div class=\"form-group\">\n  <label class=\"col-md-4 control-label\"></label>\n  <div class=\"col-md-4\">\n    <button (click)=\"create()\" class=\"btn btn-warning\" >Submit product <span class=\"glyphicon glyphicon-send\"></span></button>\n  </div>\n</div>\n\n</fieldset>\n</form>\n    </div><!-- /.container -->\n"
 
 /***/ }),
 
@@ -430,7 +451,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/home/home.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div style=\"text-align:center\">\n  <h1>{{title}}</h1>\n</div>\n\n\n<div>\n  <li><a [routerLink]=\"['/']\">Home</a></li>\n  <li *ngIf=\"!user\"><a [routerLink]=\"['/login']\">Login</a></li>\n  <li *ngIf=\"!user\"><a [routerLink]=\"['/signup']\">Signup</a></li>\n  <li *ngIf=\"!user\"><a [routerLink]=\"['/article-list']\">Article List</a></li>\n  <li *ngIf=\"user\"><a [routerLink]=\"['/create-article']\">Create Article</a></li>\n  <button *ngIf=\"user\" (click)=\"logout()\">Logout</button>\n  <!-- <p *ngIf=\"user\">{{user}}</p> -->\n</div>\n"
+module.exports = "\n\n<div style=\"text-align:center\">\n  <h1>{{title}}</h1>\n</div>\n"
 
 /***/ }),
 
@@ -439,7 +460,6 @@ module.exports = "<div style=\"text-align:center\">\n  <h1>{{title}}</h1>\n</div
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_auth_service__ = __webpack_require__("../../../../../src/app/services/auth.service.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomeComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -451,29 +471,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-
 var HomeComponent = (function () {
-    function HomeComponent(auth) {
-        var _this = this;
-        this.auth = auth;
-        this.title = 'WOWY';
-        this.user = null;
-        // this.user = this.auth.getUser();
-        // this.auth.getLoginEventEmitter()
-        //     .subscribe( user => this.user=user );
-        this.auth.isLoggedIn()
-            .subscribe((function (user) { return _this.user = user; }), (function (err) {
-            _this.error = err;
-            _this.user = null;
-        }));
+    function HomeComponent() {
     }
-    HomeComponent.prototype.ngOnInit = function () {
-    };
-    HomeComponent.prototype.logout = function () {
-        var _this = this;
-        this.auth.logout()
-            .subscribe(function (user) { return _this.user = null; });
-    };
     return HomeComponent;
 }());
 HomeComponent = __decorate([
@@ -482,10 +482,9 @@ HomeComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/home/home.component.html"),
         styles: [__webpack_require__("../../../../../src/app/home/home.component.css")]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_auth_service__["a" /* AuthService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_auth_service__["a" /* AuthService */]) === "function" && _a || Object])
+    __metadata("design:paramtypes", [])
 ], HomeComponent);
 
-var _a;
 //# sourceMappingURL=home.component.js.map
 
 /***/ }),
@@ -498,7 +497,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, "\nbody {\n\tbackground: #eee !important;\n}\n\n.wrapper {\n\tmargin-top: 80px;\n  margin-bottom: 80px;\n}\n\n.form-signin {\n  max-width: 380px;\n  padding: 15px 35px 45px;\n  margin: 0 auto;\n  background-color: #fff;\n  border: 1px solid rgba(0,0,0,0.1);\n\n  .form-signin-heading,\n\t.checkbox {\n\t  margin-bottom: 30px;\n\t}\n\n\t.checkbox {\n\t  font-weight: normal;\n\t}\n\n\t.form-control {\n\t  position: relative;\n\t  font-size: 16px;\n\t  height: auto;\n\t  padding: 10px;\n\t\t@include box-sizing(border-box);\n\n\t\t&:focus {\n\t\t  z-index: 2;\n\t\t}\n\t}\n\n\tinput[type=\"text\"] {\n\t  margin-bottom: -1px;\n\t  border-bottom-left-radius: 0;\n\t  border-bottom-right-radius: 0;\n\t}\n\n\tinput[type=\"password\"] {\n\t  margin-bottom: 20px;\n\t  border-top-left-radius: 0;\n\t  border-top-right-radius: 0;\n\t}\n}\n", ""]);
 
 // exports
 
@@ -511,7 +510,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/loginform/loginform.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<form >\n  <h2> Login </h2>\n  <label> Username </label>\n  <input type=\"text\" [(ngModel)]=\"formInfo.username\" name=\"username\"/>\n  <br>\n  <label> Password </label>\n  <input type=\"password\" [(ngModel)]=\"formInfo.password\" name=\"password\"/>\n\n  <button (click)=\"login()\"> login </button>\n</form>\n"
+module.exports = "<!-- <form >\n  <h2> Login </h2>\n  <label> Username </label>\n  <input type=\"text\" [(ngModel)]=\"formInfo.username\" name=\"username\"/>\n  <br>\n  <label> Password </label>\n  <input type=\"password\" [(ngModel)]=\"formInfo.password\" name=\"password\"/>\n\n  <button (click)=\"login()\"> login </button>\n</form> -->\n\n\n<!-- <div class=\"wrapper\">\n    <form class=\"form-signin\">\n      <h2 class=\"form-signin-heading\">Please login</h2>\n      <input type=\"text\" [(ngModel)]=\"formInfo.username\" class=\"form-control\" name=\"username\" placeholder=\"Username\" required=\"\" autofocus=\"\" />\n      <input type=\"password\" [(ngModel)]=\"formInfo.password\" class=\"form-control\" name=\"password\" placeholder=\"Password\" required=\"\"/> -->\n      <!-- <label class=\"checkbox\">\n        <input type=\"checkbox\" value=\"remember-me\" id=\"rememberMe\" name=\"rememberMe\"> Remember me\n      </label> -->\n      <!-- <br />\n      <button (click)=\"login()\" class=\"btn btn-lg btn-primary btn-block\">Login</button>\n    </form>\n  </div> -->\n\n\n  <div class=\"container\">\n\n      <form class=\"well form-horizontal\" action=\" \" method=\"post\"  id=\"contact_form\">\n  <fieldset>\n\n  <!-- Form Name -->\n  <legend style=\"text-align: center;\">Login</legend>\n\n  <!-- Text input-->\n\n  <div class=\"form-group\">\n    <label class=\"col-md-4 control-label\">Username</label>\n    <div class=\"col-md-4 inputGroupContainer\">\n    <div class=\"input-group\">\n    <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-user\"></i></span>\n    <input [(ngModel)]=\"formInfo.username\" name=\"username\" placeholder=\"Username\" class=\"form-control\"  type=\"text\">\n      </div>\n    </div>\n  </div>\n\n  <!-- Text input-->\n\n  <div class=\"form-group\">\n    <label class=\"col-md-4 control-label\" >Password</label>\n      <div class=\"col-md-4 inputGroupContainer\">\n      <div class=\"input-group\">\n    <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-check\"></i></span>\n    <input [(ngModel)]=\"formInfo.password\" name=\"password\" placeholder=\"Password\" class=\"form-control\"  type=\"text\">\n      </div>\n    </div>\n  </div>\n\n\n  <!-- Button -->\n  <div class=\"form-group\">\n    <label class=\"col-md-4 control-label\"></label>\n    <div class=\"col-md-4\">\n      <button (click)=\"login()\" class=\"btn btn-warning\" >Login <span class=\"glyphicon glyphicon-send\"></span></button>\n    </div>\n  </div>\n\n  </fieldset>\n  </form>\n      </div><!-- /.container -->\n"
 
 /***/ }),
 
@@ -810,7 +809,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/signupform/signupform.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<form >\n  <h2> Signup </h2>\n  <label> Username </label>\n  <input type=\"text\" [(ngModel)]=\"formInfo.username\" name=\"username\"/>\n  <br>\n  <label> Password </label>\n  <input type=\"password\" [(ngModel)]=\"formInfo.password\" name=\"password\"/>\n  <br>\n  <label> Email </label>\n  <input type=\"email\" [(ngModel)]=\"formInfo.email\" name=\"email\"/>\n  <br>\n  <label> Phone </label>\n  <input type=\"tel\" [(ngModel)]=\"formInfo.phone\" name=\"phone\"/>\n\n  <button (click)=\"signup()\"> signup </button>\n</form>\n"
+module.exports = "<!-- <form >\n  <h2> Signup </h2>\n  <label> Username </label>\n  <input type=\"text\" [(ngModel)]=\"formInfo.username\" name=\"username\"/>\n  <br>\n  <label> Password </label>\n  <input type=\"password\" [(ngModel)]=\"formInfo.password\" name=\"password\"/>\n  <br>\n  <label> Email </label>\n  <input type=\"email\" [(ngModel)]=\"formInfo.email\" name=\"email\"/>\n  <br>\n  <label> Phone </label>\n  <input type=\"tel\" [(ngModel)]=\"formInfo.phone\" name=\"phone\"/>\n\n  <button (click)=\"signup()\"> signup </button>\n</form> -->\n\n\n<div class=\"container\">\n\n    <form class=\"well form-horizontal\" action=\" \" method=\"post\"  id=\"contact_form\">\n<fieldset>\n\n<!-- Form Name -->\n<legend style=\"text-align: center;\">Signup</legend>\n\n<!-- Text input-->\n\n<div class=\"form-group\">\n  <label class=\"col-md-4 control-label\">Username</label>\n  <div class=\"col-md-4 inputGroupContainer\">\n  <div class=\"input-group\">\n  <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-user\"></i></span>\n  <input [(ngModel)]=\"formInfo.username\" name=\"username\" placeholder=\"Username\" class=\"form-control\"  type=\"text\">\n    </div>\n  </div>\n</div>\n\n<!-- Text input-->\n\n<div class=\"form-group\">\n  <label class=\"col-md-4 control-label\" >Password</label>\n    <div class=\"col-md-4 inputGroupContainer\">\n    <div class=\"input-group\">\n  <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-check\"></i></span>\n  <input [(ngModel)]=\"formInfo.password\" name=\"password\" placeholder=\"Password\" class=\"form-control\"  type=\"text\">\n    </div>\n  </div>\n</div>\n\n\n<div class=\"form-group\">\n  <label class=\"col-md-4 control-label\" >Email</label>\n    <div class=\"col-md-4 inputGroupContainer\">\n    <div class=\"input-group\">\n  <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-envelope\"></i></span>\n  <input [(ngModel)]=\"formInfo.email\" name=\"email\" placeholder=\"Email\" class=\"form-control\"  type=\"text\">\n    </div>\n  </div>\n</div>\n\n\n<div class=\"form-group\">\n  <label class=\"col-md-4 control-label\" >Phone</label>\n    <div class=\"col-md-4 inputGroupContainer\">\n    <div class=\"input-group\">\n  <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-phone\"></i></span>\n  <input [(ngModel)]=\"formInfo.phone\" name=\"phone\" placeholder=\"Phone\" class=\"form-control\"  type=\"text\">\n    </div>\n  </div>\n</div>\n\n<!-- Button -->\n<div class=\"form-group\">\n  <label class=\"col-md-4 control-label\"></label>\n  <div class=\"col-md-4\">\n    <button (click)=\"signup()\" class=\"btn btn-warning\" >Signup <span class=\"glyphicon glyphicon-send\"></span></button>\n  </div>\n</div>\n\n</fieldset>\n</form>\n    </div><!-- /.container -->\n"
 
 /***/ }),
 
@@ -949,15 +948,15 @@ var _a;
 // The build system defaults to the dev environment which uses `environment.ts`, but if you do
 // `ng build --env=prod` then `environment.prod.ts` will be used instead.
 // The list of which env maps to which file can be found in `.angular-cli.json`.
-// export const environment = {
-//   production: false,
-//   BASE_URL: 'http://localhost:3000'
-// };
 // The file contents for the current environment will overwrite these during build.
 var environment = {
-    production: true,
-    BASE_URL: ''
+    production: false,
+    BASE_URL: 'http://localhost:3000'
 };
+// export const environment = {
+//   production: true,
+//   BASE_URL: ''
+// };
 //# sourceMappingURL=environment.js.map
 
 /***/ }),
