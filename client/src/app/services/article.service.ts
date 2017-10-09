@@ -22,7 +22,9 @@ export class ArticleService {
   }
 
   createArticle(newArticle) {
-    return this.http.post(`${this.BASE_URL}/api`, newArticle, this.options)
+    console.log("NEW ARTICLE", newArticle)
+    console.log(`${this.BASE_URL}`);
+    return this.http.post(`${this.BASE_URL}/api/newArticle`, newArticle, this.options)
       .map((res) => res.json());
   }
 

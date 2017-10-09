@@ -19,5 +19,6 @@ export const routes: Routes = [
   { path: 'article-details/:id', component: ArticleDetailsComponent },
   { path: 'article-list', component: ArticleListComponent },
   { path: 'create-article', component: CreateArticleComponent },
+  { path: 'newArticle', component: CreateArticleComponent },
   //{ path: '**', redirectTo: '' }
 ];

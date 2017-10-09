@@ -12,6 +12,11 @@ const checkIDParam = (req,res,next) =>{
 };
 
 
+/* GET create article form. */
+// router.get('/create-article', (req, res, next) => {
+// });
+
+
 /* GET Articles listing. */
 router.get('/articles', (req, res, next) => {
   Article.find()
@@ -20,7 +25,8 @@ router.get('/articles', (req, res, next) => {
 });
 
 /* CREATE a new Article. */
-router.post('/',upload.single('file'), (req, res, next) => {
+router.post('/newArticle',upload.single('file'), (req, res, next) => {
+  console.log("CREATE NEW ARTICLE")
   const theArticle = new Article({
     name: req.body.name,
     description: req.body.description,
@@ -29,14 +35,17 @@ router.post('/',upload.single('file'), (req, res, next) => {
     status: req.body.status,
     reward: req.body.reward,
     image: `/uploads/${req.file.filename}` || ''
-  }).save()
+  })
+  console.log(theArticle)
+  theArticle.save()
   .then( article => {
-      res.json({
+      console.log("EL NUEVO ARTICLE", article);
+      res.status(202).json({
         message: 'New Article created!',
         id: article._id
       });
     })
-  .catch( e => res.json(e));
+  .catch( e => res.status(500).json(e));
 });
 
 /* GET a single Article. */
@@ -51,6 +60,7 @@ router.get('/articles/:id', checkIDParam, (req, res) => {
         reward : p.reward,
         status : p.status
       }
+      console.log(articuloNuevo);
       res.status(200).json(articuloNuevo)
     })
     .catch(e => res.status(500).json({error:e.message}));

@@ -12,7 +12,7 @@ import { ArticleService } from '../services/article.service';
 export class CreateArticleComponent implements OnInit {
 
   uploader: FileUploader = new FileUploader({
-    url: `${environment.BASE_URL}/api`
+    url: `${environment.BASE_URL}/api/newArticle`
   });
 
   newArticle = {
@@ -20,7 +20,8 @@ export class CreateArticleComponent implements OnInit {
     description: '',
     date: '',
     localization: '',
-    reward: null
+    reward: null,
+    status: ''
   };
 
   constructor(public router:Router, public articleService:ArticleService) { }
@@ -35,6 +36,7 @@ export class CreateArticleComponent implements OnInit {
   }
 
   create(){
+    console.log("FUNCION CREATE")
     this.articleService.createArticle(this.newArticle)
     this.uploader.onBuildItemForm = (item, form) => {
       form.append('name', this.newArticle.name);
@@ -42,6 +44,7 @@ export class CreateArticleComponent implements OnInit {
       form.append('date', this.newArticle.date);
       form.append('localization', this.newArticle.localization);
       form.append('reward', this.newArticle.reward);
+      form.append('status', this.newArticle.status);
     };
 
    this.uploader.uploadAll();

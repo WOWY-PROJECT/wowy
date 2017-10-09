@@ -29,13 +29,13 @@ import { FileUploadModule } from "ng2-file-upload";
     CreateArticleComponent
   ],
   imports: [
-    FileUploadModule, 
+    FileUploadModule,
     BrowserModule,
     FormsModule,
     HttpModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [AuthService, IsLoggedInService, ArticleService],
+  providers: [AuthService, IsLoggedInService, ArticleService, CreateArticleComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -102,10 +102,10 @@
         <div class="col-md-4 selectContainer">
           <div class="input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-            <select name="" form="contact_form" class="form-control selectpicker">
-      <option value=" " >Have you lost or found this item?</option>
-      <option>I have lost this item</option>
-      <option>I have found this item</option>
+            <select [(ngModel)]="newArticle.status" name="status" form="contact_form" class="form-control selectpicker">
+      <!-- <option value="" >Have you lost or found this item?</option> -->
+      <option  value="lost">I have lost this item</option>
+      <option  value="found">I have found this item</option>
     </select>
           </div>
         </div>

@@ -25,8 +25,8 @@ const articleSchema = new mongoose.Schema({
     default: 0
   },
   status: {
-    type: String,
-    enum: ['lost', 'found']
+    type: Boolean,
+    default: true
   }
   // uploader: {  //No funciona al subir el seeds
   //   type:Schema.Types.ObjectId,
