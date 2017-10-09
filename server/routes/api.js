@@ -1,7 +1,7 @@
-const express = require('express');
-const router = express.Router();
-const Article = require('../models/Article');
+const router = require('express').Router();
 const mongoose = require('mongoose');
+const upload = require('../config/multer');
+const Article = require('../models/Article');
 
 const checkIDParam = (req,res,next) =>{
   if(!mongoose.Types.ObjectId.isValid(req.params.id)) {
@@ -20,13 +20,13 @@ router.get('/articles', (req, res, next) => {
 });
 
 /* CREATE a new Article. */
-const upload = require('../config/multer');
 router.post('/',upload.single('file'), (req, res, next) => {
   const theArticle = new Article({
     name: req.body.name,
     description: req.body.description,
     date: req.body.date,
     localization: req.body.localization,
+    status: req.body.status,
     reward: req.body.reward,
     image: `/uploads/${req.file.filename}` || ''
   }).save()
@@ -42,7 +42,17 @@ router.post('/',upload.single('file'), (req, res, next) => {
 /* GET a single Article. */
 router.get('/articles/:id', checkIDParam, (req, res) => {
   Article.findById(req.params.id)
-    .then(p => res.status(200).json(p))
+    .then(p => {
+      let articuloNuevo = {
+        name : p.name,
+        image : "https://wowy-project.herokuapp.com" + p.image,
+        description : p.description,
+        localization : p.localization,
+        reward : p.reward,
+        status : p.status
+      }
+      res.status(200).json(articuloNuevo)
+    })
     .catch(e => res.status(500).json({error:e.message}));
 });
 

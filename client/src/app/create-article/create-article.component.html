@@ -29,108 +29,109 @@
 
 <div class="container">
 
-    <form class="well form-horizontal" action=" " method="post"  id="contact_form">
-<fieldset>
+  <form class="well form-horizontal"  method="post" id="contact_form">
+    <fieldset>
 
-<!-- Form Name -->
-<legend style="text-align: center;">Submit an article!</legend>
+      <!-- Form Name -->
+      <legend style="text-align: center;">Submit an article!</legend>
 
-<!-- Text input-->
+      <!-- Text input-->
 
-<div class="form-group">
-  <label class="col-md-4 control-label">Name</label>
-  <div class="col-md-4 inputGroupContainer">
-  <div class="input-group">
-  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input [(ngModel)]="newArticle.name" name="name" placeholder="Name" class="form-control"  type="text">
-    </div>
-  </div>
-</div>
+      <div class="form-group">
+        <label class="col-md-4 control-label">Name</label>
+        <div class="col-md-4 inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            <input [(ngModel)]="newArticle.name" name="name" placeholder="Name" class="form-control" type="text">
+          </div>
+        </div>
+      </div>
 
-<!-- Text input-->
+      <!-- Text input-->
 
-<div class="form-group">
-  <label class="col-md-4 control-label" >Description</label>
-    <div class="col-md-4 inputGroupContainer">
-    <div class="input-group">
-  <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-  <input [(ngModel)]="newArticle.description" name="description" placeholder="Description" class="form-control"  type="text">
-    </div>
-  </div>
-</div>
+      <div class="form-group">
+        <label class="col-md-4 control-label">Description</label>
+        <div class="col-md-4 inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+            <input [(ngModel)]="newArticle.description" name="description" placeholder="Description" class="form-control" type="text">
+          </div>
+        </div>
+      </div>
 
-<!-- Text input-->
-       <div class="form-group">
-  <label class="col-md-4 control-label">Localization</label>
-    <div class="col-md-4 inputGroupContainer">
-    <div class="input-group">
-        <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
-  <input [(ngModel)]="newArticle.localization" name="localization" placeholder="Localization" class="form-control"  type="text">
-    </div>
-  </div>
-</div>
+      <!-- Text input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label">Localization</label>
+        <div class="col-md-4 inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
+            <input [(ngModel)]="newArticle.localization" name="localization" placeholder="Localization" class="form-control" type="text">
+          </div>
+        </div>
+      </div>
 
 
-<!-- Text input-->
+      <!-- Text input-->
 
-<div class="form-group">
-  <label class="col-md-4 control-label">Date</label>
-    <div class="col-md-4 inputGroupContainer">
-    <div class="input-group">
-        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-  <input [(ngModel)]="newArticle.date" name="date" placeholder="Date" class="form-control" type="date">
-    </div>
-  </div>
-</div>
+      <div class="form-group">
+        <label class="col-md-4 control-label">Date</label>
+        <div class="col-md-4 inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+            <input [(ngModel)]="newArticle.date" name="date" placeholder="Date" class="form-control" type="date">
+          </div>
+        </div>
+      </div>
 
-<!-- Text input-->
+      <!-- Text input-->
 
-<div class="form-group">
-  <label class="col-md-4 control-label">Reward</label>
-    <div class="col-md-4 inputGroupContainer">
-    <div class="input-group">
-        <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
-  <input [(ngModel)]="newArticle.reward" name="reward" placeholder="Reward" class="form-control" type="number">
-    </div>
-  </div>
-</div>
+      <div class="form-group">
+        <label class="col-md-4 control-label">Reward</label>
+        <div class="col-md-4 inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
+            <input [(ngModel)]="newArticle.reward" name="reward" placeholder="Reward" class="form-control" type="number">
+          </div>
+        </div>
+      </div>
 
-<!-- Select Basic -->
+      <!-- Select Basic -->
 
-<div class="form-group">
-  <label class="col-md-4 control-label">Lost or found?</label>
-    <div class="col-md-4 selectContainer">
-    <div class="input-group">
-        <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-    <select name="" form="contact_form" class="form-control selectpicker" >
+      <div class="form-group">
+        <label class="col-md-4 control-label">Lost or found?</label>
+        <div class="col-md-4 selectContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+            <select name="" form="contact_form" class="form-control selectpicker">
       <option value=" " >Have you lost or found this item?</option>
       <option>I have lost this item</option>
       <option>I have found this item</option>
     </select>
-  </div>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="form-group">
+        <label class="col-md-4 control-label">Upload image</label>
+        <div class="col-md-4 inputGroupContainer">
+          <div class="input-group">
+            <input type="file" name="file" id="file" ng2FileSelect [uploader]="uploader" />
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Button -->
+      <div class="form-group">
+        <label class="col-md-4 control-label"></label>
+        <div class="col-md-4">
+          <button (click)="create()" class="btn btn-warning">Submit product <span class="glyphicon glyphicon-send"></span></button>
+        </div>
+      </div>
+
+    </fieldset>
+  </form>
 </div>
-</div>
-
-
-
-<div class="form-group">
-  <label class="col-md-4 control-label">Upload image</label>
-    <div class="col-md-4 inputGroupContainer">
-    <div class="input-group">
-  <input type="file" name="file"  id="file" ng2FileSelect [uploader]="uploader" />
-    </div>
-  </div>
-</div>
-
-
-<!-- Button -->
-<div class="form-group">
-  <label class="col-md-4 control-label"></label>
-  <div class="col-md-4">
-    <button (click)="create()" class="btn btn-warning" >Submit product <span class="glyphicon glyphicon-send"></span></button>
-  </div>
-</div>
-
-</fieldset>
-</form>
-    </div><!-- /.container -->
+<!-- /.container -->

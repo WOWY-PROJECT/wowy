@@ -3,7 +3,7 @@
 
 <div *ngIf="article">
   <div class="article-thumbnail">
-    <img height="300" [src]="article.image" />
+    <img height="300" [src]="BASE_URL + article.image" />
   </div>
   <button (click)="deleteArticle()">Delete this article</button>
   <div class="article-info">
@@ -16,5 +16,6 @@
         <li *ngFor="let spec of article.specs"> {{ spec&nbsp;}} </li>
       </ul>
     </div> -->
+    
   </div>
 </div>

@@ -12,7 +12,6 @@ export class ArticleService {
   constructor(private http: Http) {}
 
   getList() {
-    console.log("entro");
     return this.http.get(`${this.BASE_URL}/api/articles`, this.options)
       .map((res) => res.json());
   }
@@ -23,8 +22,7 @@ export class ArticleService {
   }
 
   createArticle(newArticle) {
-    console.log("entro en funcion")
-    return this.http.post(`${this.BASE_URL}/api`, this.options)
+    return this.http.post(`${this.BASE_URL}/api`, newArticle, this.options)
       .map((res) => res.json());
   }
 

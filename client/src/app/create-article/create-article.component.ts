@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FileUploader} from "ng2-file-upload";
-import {environment} from '../../environments/environment';
+import { environment } from '../../environments/environment';
 import { Router } from '@angular/router';
 import { ArticleService } from '../services/article.service';
 
@@ -12,7 +12,7 @@ import { ArticleService } from '../services/article.service';
 export class CreateArticleComponent implements OnInit {
 
   uploader: FileUploader = new FileUploader({
-    url: `${environment.BASE_URL}/api/`
+    url: `${environment.BASE_URL}/api`
   });
 
   newArticle = {

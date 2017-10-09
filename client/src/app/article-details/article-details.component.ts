@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
-import {ArticleService} from '../services/article.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ArticleService } from '../services/article.service';
+import { environment } from '../../environments/environment';
+
+const BASE_URL = environment.BASE_URL;
+
 
 @Component({
   selector: 'app-article-details',
@@ -18,11 +22,11 @@ export class ArticleDetailsComponent implements OnInit {
     ngOnInit() {
       this.route.params.subscribe(params => {
         console.log(`El parametro recibido es: ${params['id']}`);
-        this.get(params['id'])
+        this.getArticle(params['id'])
       });
     }
 
-    get(id) {
+    getArticle(id) {
       this.articleService.get(id)
         .subscribe((article) => {
           this.article = article;

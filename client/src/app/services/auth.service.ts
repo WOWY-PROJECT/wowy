@@ -38,7 +38,8 @@ export class AuthService {
     }
 
     signup(username,password, email, phone) {
-      console.log("entrooo")
+      console.log("entrooo");
+      console.log(`${BASEURL}/signup`);
       return this.http.post(`${BASEURL}/signup`, {username,password, email, phone}, this.options)
         .map(res => res.json())
         .map(user => this.emitUserLoginEvent(user))
