@@ -3,11 +3,11 @@ import { Http } from '@angular/http';
 import 'rxjs/add/operator/map'
 import { environment } from '../../environments/environment';
 
-const BASE_URL = environment.BASE_URL;
 
 @Injectable()
 export class ArticleService {
   // BASE_URL: string = 'http://localhost:3000';
+  BASE_URL = environment.BASE_URL;
   private options = { withCredentials: true};
   constructor(private http: Http) {}
 
