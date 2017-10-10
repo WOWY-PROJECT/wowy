@@ -117,6 +117,9 @@ var _a;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__create_article_create_article_component__ = __webpack_require__("../../../../../src/app/create-article/create-article.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_ng2_file_upload__ = __webpack_require__("../../../../ng2-file-upload/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_ng2_file_upload___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_17_ng2_file_upload__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__agm_core__ = __webpack_require__("../../../../@agm/core/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__lost_articles_lost_articles_component__ = __webpack_require__("../../../../../src/app/lost-articles/lost-articles.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__found_articles_found_articles_component__ = __webpack_require__("../../../../../src/app/found-articles/found-articles.component.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -124,6 +127,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
+
 
 
 
@@ -157,16 +163,22 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_13__signupform_signupform_component__["a" /* SignupformComponent */],
             __WEBPACK_IMPORTED_MODULE_14__article_details_article_details_component__["a" /* ArticleDetailsComponent */],
             __WEBPACK_IMPORTED_MODULE_15__article_list_article_list_component__["a" /* ArticleListComponent */],
-            __WEBPACK_IMPORTED_MODULE_16__create_article_create_article_component__["a" /* CreateArticleComponent */]
+            __WEBPACK_IMPORTED_MODULE_16__create_article_create_article_component__["a" /* CreateArticleComponent */],
+            __WEBPACK_IMPORTED_MODULE_19__lost_articles_lost_articles_component__["a" /* LostArticlesComponent */],
+            __WEBPACK_IMPORTED_MODULE_20__found_articles_found_articles_component__["a" /* FoundArticlesComponent */]
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_17_ng2_file_upload__["FileUploadModule"],
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
             __WEBPACK_IMPORTED_MODULE_3__angular_forms__["a" /* FormsModule */],
             __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* HttpModule */],
-            __WEBPACK_IMPORTED_MODULE_10__angular_router__["a" /* RouterModule */].forRoot(__WEBPACK_IMPORTED_MODULE_12__routes__["a" /* routes */])
+            __WEBPACK_IMPORTED_MODULE_10__angular_router__["a" /* RouterModule */].forRoot(__WEBPACK_IMPORTED_MODULE_12__routes__["a" /* routes */]),
+            __WEBPACK_IMPORTED_MODULE_18__agm_core__["a" /* AgmCoreModule */].forRoot({
+                // apiKey: 'AIzaSyB-DfsZKYeYeWSaycvNrkVe-x_lseyD8i8'
+                apiKey: 'AIzaSyD6AD8ltoPLTqS8ahgnWXfwkK9JLiYcdTw'
+            })
         ],
-        providers: [__WEBPACK_IMPORTED_MODULE_6__services_auth_service__["a" /* AuthService */], __WEBPACK_IMPORTED_MODULE_11__services_isLoggedIn_canactivate_service__["a" /* IsLoggedInService */], __WEBPACK_IMPORTED_MODULE_7__services_article_service__["a" /* ArticleService */]],
+        providers: [__WEBPACK_IMPORTED_MODULE_6__services_auth_service__["a" /* AuthService */], __WEBPACK_IMPORTED_MODULE_11__services_isLoggedIn_canactivate_service__["a" /* IsLoggedInService */], __WEBPACK_IMPORTED_MODULE_7__services_article_service__["a" /* ArticleService */], __WEBPACK_IMPORTED_MODULE_16__create_article_create_article_component__["a" /* CreateArticleComponent */]],
         bootstrap: [__WEBPACK_IMPORTED_MODULE_4__app_component__["a" /* AppComponent */]]
     })
 ], AppModule);
@@ -183,7 +195,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, "agm-map {\n  height: 200px;\n  width: 100%;\n}\n", ""]);
 
 // exports
 
@@ -196,7 +208,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/article-details/article-details.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h1> Article details </h1>\n<a [routerLink]=\"['/article-list']\"> Back to list </a>\n\n<div *ngIf=\"article\">\n  <div class=\"article-thumbnail\">\n    <img height=\"300\" [src]=\"BASE_URL + article.image\" />\n  </div>\n  <button (click)=\"deleteArticle()\">Delete this article</button>\n  <div class=\"article-info\">\n    <h2> {{ article.name }}&nbsp;</h2>\n    <h3> {{ article.description }} </h3>\n\n    <!-- <div *ngIf=\"article.specs.length\">\n      <h4> Features </h4>\n      <ul>\n        <li *ngFor=\"let spec of article.specs\"> {{ spec&nbsp;}} </li>\n      </ul>\n    </div> -->\n    \n  </div>\n</div>\n"
+module.exports = "<h1> Article details </h1>\n<a [routerLink]=\"['/article-list']\"> Back to list </a>\n\n<div *ngIf=\"article\">\n  <div class=\"article-thumbnail\">\n    <img height=\"300\" [src]=\"BASE_URL + article.image\" />\n  </div>\n\n  <div class=\"article-info\">\n    <h2> {{ article.name }}&nbsp;</h2>\n    <h3> {{ article.description }} </h3>\n    <h3> {{ article.reward }} </h3>\n\n\n    <div class=\"container\">\n        <div class=\"row\">\n          <div class=\"col-xs-3 col-md-3\">\n          </div>\n          <div class=\"col-xs-5 col-md-5\">\n            <agm-map [latitude]=\"article.lat\" [longitude]=\"article.lng\">\n            <agm-marker [latitude]=\"article.lat\" [longitude]=\"article.lng\"></agm-marker>\n            </agm-map>\n          </div>\n          <div class=\"col-xs-4 col-md-4\">\n          </div>\n        </div>\n      </div>\n\n    <!-- <div *ngIf=\"article.specs.length\">\n      <h4> Features </h4>\n      <ul>\n        <li *ngFor=\"let spec of article.specs\"> {{ spec&nbsp;}} </li>\n      </ul>\n    </div> -->\n\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -241,6 +253,8 @@ var ArticleDetailsComponent = (function () {
         this.articleService.get(id)
             .subscribe(function (article) {
             _this.article = article;
+            _this.lat = article.lat;
+            _this.lng = article.lng;
         });
     };
     return ArticleDetailsComponent;
@@ -255,14 +269,6 @@ ArticleDetailsComponent = __decorate([
 ], ArticleDetailsComponent);
 
 var _a, _b, _c;
-// deletePhone() {
-//   if (window.confirm('Are you sure?')) {
-//     this.phoneService.remove(this.phone._id)
-//       .subscribe(() => {
-//         this.router.navigate(['']);
-//       });
-//   }
-// }
 //# sourceMappingURL=article-details.component.js.map
 
 /***/ }),
@@ -288,7 +294,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/article-list/article-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!-- <h1> Article list </h1>\n<div *ngIf=\"articles\">\n  <div *ngFor=\"let article of articles\" class=\"article\">\n    <img [src]=\"article.image\" height=100/>\n    <h3> {{ article.name }} </h3>\n    <p> {{ article.description }} </p>\n    <a [routerLink]=\"['/article-details', article._id]\"> View Details </a>\n  </div>\n</div> -->\n\n    <!-- <div class=\"container\">\n        <div *ngIf=\"articles\" class=\"row\">\n            <div class=\"col-lg-12\">\n                <h1 class=\"page-header\">Articles list\n                </h1>\n            </div>\n        </div>\n        <div class=\"row\">\n            <div *ngFor=\"let article of articles\" class=\"col-md-3 portfolio-item\">\n                <a href=\"#\">\n                    <img class=\"img-responsive\" [src]=\"article.image\" height=100 alt=\"\">\n                </a>\n                <h3>\n                    <a [routerLink]=\"['/article-details', article._id]\">{{ article.name }}</a>\n                </h3>\n                <p>{{ article.description }}</p>\n                <button [routerLink]=\"['/article-details', article._id]\"> View Details </button>\n            </div>\n        </div>\n        <hr>\n    </div> -->\n\n\n\n    <div class=\"container\">\n      <ul class=\"list-group\">\n        <li *ngFor=\"let article of articles\" class=\"list-group-item clearfix\">\n          <img class=\"img-responsive img-rounded\" [src]=\"'http://localhost:3000' + article.image\" height=100 alt=\"\"/>\n          <h3 class=\"list-group-item-heading\">\n            {{ article.name }}\n          </h3>\n          <p class=\"list-group-item-text lead\">\n            {{ article.description }}\n            <br />\n            <a [routerLink]=\"['/article-details', article._id]\"><small>Details&#8230;</small></a>\n          </p>\n          <div class=\"btn-toolbar pull-right\" role=\"toolbar\" aria-label=\"\">\n            <div class=\"btn-group\">\n              <button type=\"button\" class=\"btn btn-default dropdown-toggle\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\"><i class=\"fa fa-fw fa-list\"></i> <span class=\"caret\"></span></button>\n              <ul class=\"dropdown-menu\">\n                <li><a href=\"#\">Add to new list</a></li>\n                <li role=\"separator\" class=\"divider\"></li>\n                <li><a href=\"#\">A list</a></li>\n                <li><a href=\"#\">Another list</a></li>\n                <li><a href=\"#\">Third list</a></li>\n              </ul>\n            </div>\n            <a href=\"#\" class=\"btn btn-default\">Add to cart</a>\n            <a href=\"#\" class=\"btn btn-primary\">$29.99</a>\n          </div>\n        </li>\n        <!-- <li class=\"list-group-item active clearfix\">\n          <img class=\"img-responsive img-rounded\" src=\"http://placehold.it/256/163a63\" alt=\"\"/>\n          <h3 class=\"list-group-item-heading\">\n            Current thing\n          </h3>\n          <p class=\"list-group-item-text lead\">\n            Etiam porta sem malesuada magna mollis euismod. Etiam porta sem malesuada magna mollis euismod.\n            <br />\n            <a href=\"#\"><small>Details&#8230;</small></a>\n          </p>\n          <div class=\"btn-toolbar pull-right\" role=\"toolbar\" aria-label=\"\">\n            <div class=\"btn-group\">\n              <button type=\"button\" class=\"btn btn-default dropdown-toggle\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\"><i class=\"fa fa-fw fa-list\"></i> <span class=\"caret\"></span></button>\n              <ul class=\"dropdown-menu\">\n                <li><a href=\"#\">Add to new list</a></li>\n                <li role=\"separator\" class=\"divider\"></li>\n                <li><a href=\"#\">A list</a></li>\n                <li><a href=\"#\">Another list</a></li>\n                <li><a href=\"#\">Third list</a></li>\n              </ul>\n            </div>\n            <a href=\"#\" class=\"btn btn-default\">Add to cart</a>\n            <a href=\"#\" class=\"btn btn-info\">$9.95</a>\n          </div>\n        </li>\n        <li class=\"list-group-item clearfix\">\n          <img class=\"img-responsive img-rounded\" src=\"http://placehold.it/256/163a63\" alt=\"\"/>\n          <h3 class=\"list-group-item-heading\">\n            Something great\n          </h3>\n          <p class=\"list-group-item-text lead\">\n            Donec sed odio dui. Donec id elit non mi porta gravida at eget metus. Donec sed odio dui. Donec id elit non mi porta gravida at eget metus.\n            <br />\n            <a href=\"#\"><small>Details&#8230;</small></a>\n          </p>\n          <div class=\"btn-toolbar pull-right\" role=\"toolbar\" aria-label=\"\">\n            <div class=\"btn-group\">\n              <button type=\"button\" class=\"btn btn-default dropdown-toggle\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\"><i class=\"fa fa-fw fa-list\"></i> <span class=\"caret\"></span></button>\n              <ul class=\"dropdown-menu\">\n                <li><a href=\"#\">Add to new list</a></li>\n                <li role=\"separator\" class=\"divider\"></li>\n                <li><a href=\"#\">A list</a></li>\n                <li><a href=\"#\">Another list</a></li>\n                <li><a href=\"#\">Third list</a></li>\n              </ul>\n            </div>\n            <a href=\"#\" class=\"btn btn-default\">Add to cart</a>\n            <a href=\"#\" class=\"btn btn-primary\">$42.50</a>\n          </div>\n        </li>\n        <li class=\"list-group-item clearfix\">\n          <img class=\"img-responsive img-rounded\" src=\"http://placehold.it/256/163a63\" alt=\"\"/>\n          <h3 class=\"list-group-item-heading\">\n            Another thing\n            <span class=\"label label-default pull-right\">SOLD OUT</span>\n          </h3>\n          <p class=\"list-group-item-text lead\">\n            Cras justo odio, dapibus ac facilisis in, egestas eget quam. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.\n            <br />\n            <a href=\"#\"><small>Details&#8230;</small></a>\n          </p>\n          <div class=\"btn-toolbar pull-right\" role=\"toolbar\" aria-label=\"\">\n            <div class=\"btn-group\">\n              <button type=\"button\" class=\"btn disabled btn-default dropdown-toggle\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\"><i class=\"fa fa-fw fa-list\"></i> <span class=\"caret\"></span></button>\n              <ul class=\"dropdown-menu\">\n                <li><a href=\"#\">Add to new list</a></li>\n                <li role=\"separator\" class=\"divider\"></li>\n                <li><a href=\"#\">A list</a></li>\n                <li><a href=\"#\">Another list</a></li>\n                <li><a href=\"#\">Third list</a></li>\n              </ul>\n            </div>\n            <a href=\"#\" class=\"btn disabled btn-default\">Add to cart</a>\n            <a href=\"#\" class=\"btn disabled btn-primary\">$1.99</a>\n          </div>\n        </li>\n        <li class=\"list-group-item clearfix\">\n          <img class=\"img-responsive img-rounded\" src=\"http://placehold.it/256/163a63\" alt=\"\"/>\n          <h3 class=\"list-group-item-heading\">\n            Yet another item\n          </h3>\n          <p class=\"list-group-item-text lead\">\n            Etiam porta sem malesuada magna mollis euismod. Etiam porta sem malesuada magna mollis euismod.\n            <br />\n            <a href=\"#\"><small>Details&#8230;</small></a>\n          </p>\n          <div class=\"btn-toolbar pull-right\" role=\"toolbar\" aria-label=\"\">\n            <div class=\"btn-group\">\n              <button type=\"button\" class=\"btn btn-default dropdown-toggle\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\"><i class=\"fa fa-fw fa-list\"></i> <span class=\"caret\"></span></button>\n              <ul class=\"dropdown-menu\">\n                <li><a href=\"#\">Add to new list</a></li>\n                <li role=\"separator\" class=\"divider\"></li>\n                <li><a href=\"#\">A list</a></li>\n                <li><a href=\"#\">Another list</a></li>\n                <li><a href=\"#\">Third list</a></li>\n              </ul>\n            </div>\n            <a href=\"#\" class=\"btn btn-default\">Add to cart</a>\n            <a href=\"#\" class=\"btn btn-primary\">$16.00</a>\n          </div>\n        </li>\n        <li class=\"list-group-item clearfix\">\n          <img class=\"img-responsive img-rounded\" src=\"http://placehold.it/256/163a63\" alt=\"\"/>\n          <h3 class=\"list-group-item-heading\">\n            Something else\n          </h3>\n          <p class=\"list-group-item-text lead\">\n            Etiam porta sem malesuada magna mollis euismod. Etiam porta sem malesuada magna mollis euismod.\n            <br />\n            <a href=\"#\"><small>Details&#8230;</small></a>\n          </p>\n          <div class=\"btn-toolbar pull-right\" role=\"toolbar\" aria-label=\"\">\n            <div class=\"btn-group\">\n              <button type=\"button\" class=\"btn btn-default dropdown-toggle\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\"><i class=\"fa fa-fw fa-list\"></i> <span class=\"caret\"></span></button>\n              <ul class=\"dropdown-menu\">\n                <li><a href=\"#\">Add to new list</a></li>\n                <li role=\"separator\" class=\"divider\"></li>\n                <li><a href=\"#\">A list</a></li>\n                <li><a href=\"#\">Another list</a></li>\n                <li><a href=\"#\">Third list</a></li>\n              </ul>\n            </div>\n            <a href=\"#\" class=\"btn btn-default\">Add to cart</a>\n            <a href=\"#\" class=\"btn btn-primary\">$12.99</a>\n          </div>\n        </li>\n        <li class=\"list-group-item clearfix\">\n          <img class=\"img-responsive img-rounded\" src=\"http://placehold.it/256/163a63\" alt=\"\"/>\n          <h3 class=\"list-group-item-heading\">\n            Last thing here\n          </h3>\n          <p class=\"list-group-item-text lead\">\n            Cras mattis consectetur purus sit amet fermentum. Maecenas faucibus mollis interdum. Cras mattis consectetur purus sit amet fermentum. Maecenas faucibus mollis interdum.\n            <br />\n            <a href=\"#\"><small>Details&#8230;</small></a>\n          </p>\n          <div class=\"btn-toolbar pull-right\" role=\"toolbar\" aria-label=\"\">\n            <div class=\"btn-group\">\n              <button type=\"button\" class=\"btn btn-default dropdown-toggle\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\"><i class=\"fa fa-fw fa-list\"></i> <span class=\"caret\"></span></button>\n              <ul class=\"dropdown-menu\">\n                <li><a href=\"#\">Add to new list</a></li>\n                <li role=\"separator\" class=\"divider\"></li>\n                <li><a href=\"#\">A list</a></li>\n                <li><a href=\"#\">Another list</a></li>\n                <li><a href=\"#\">Third list</a></li>\n              </ul>\n            </div>\n            <a href=\"#\" class=\"btn btn-default\">Add to cart</a>\n            <a href=\"#\" class=\"btn btn-success\">Free!</a>\n          </div>\n        </li> -->\n      </ul>\n    </div>\n"
+module.exports = "\n    <div class=\"container\">\n      <ul class=\"list-group\">\n        <li *ngFor=\"let article of articles\" class=\"list-group-item clearfix\">\n          <img class=\"img-responsive img-rounded\" [src]=\"'http://localhost:3000' + article.image\" height=100 alt=\"\"/>\n          <h3 class=\"list-group-item-heading\">\n            {{ article.name }}\n          </h3>\n          <p class=\"list-group-item-text lead\">\n            {{ article.description }}\n            <br />\n            <a [routerLink]=\"['/article-details', article._id]\"><small>Details&#8230;</small></a>\n          </p>\n          <div class=\"btn-toolbar pull-right\" role=\"toolbar\" aria-label=\"\">\n            <div class=\"btn-group\">\n              <button type=\"button\" class=\"btn btn-default dropdown-toggle\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\"><i class=\"fa fa-fw fa-list\"></i> <span class=\"caret\"></span></button>\n              <ul class=\"dropdown-menu\">\n                <li><a href=\"#\">Add to new list</a></li>\n                <li role=\"separator\" class=\"divider\"></li>\n                <li><a href=\"#\">A list</a></li>\n                <li><a href=\"#\">Another list</a></li>\n                <li><a href=\"#\">Third list</a></li>\n              </ul>\n            </div>\n            <a href=\"#\" class=\"btn btn-default\">Add to cart</a>\n            <a href=\"#\" class=\"btn btn-primary\">$29.99</a>\n          </div>\n        </li>\n        <!-- <li class=\"list-group-item active clearfix\">\n          <img class=\"img-responsive img-rounded\" src=\"http://placehold.it/256/163a63\" alt=\"\"/>\n          <h3 class=\"list-group-item-heading\">\n            Current thing\n          </h3>\n          <p class=\"list-group-item-text lead\">\n            Etiam porta sem malesuada magna mollis euismod. Etiam porta sem malesuada magna mollis euismod.\n            <br />\n            <a href=\"#\"><small>Details&#8230;</small></a>\n          </p>\n          <div class=\"btn-toolbar pull-right\" role=\"toolbar\" aria-label=\"\">\n            <div class=\"btn-group\">\n              <button type=\"button\" class=\"btn btn-default dropdown-toggle\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\"><i class=\"fa fa-fw fa-list\"></i> <span class=\"caret\"></span></button>\n              <ul class=\"dropdown-menu\">\n                <li><a href=\"#\">Add to new list</a></li>\n                <li role=\"separator\" class=\"divider\"></li>\n                <li><a href=\"#\">A list</a></li>\n                <li><a href=\"#\">Another list</a></li>\n                <li><a href=\"#\">Third list</a></li>\n              </ul>\n            </div>\n            <a href=\"#\" class=\"btn btn-default\">Add to cart</a>\n            <a href=\"#\" class=\"btn btn-info\">$9.95</a>\n          </div>\n        </li>\n        <li class=\"list-group-item clearfix\">\n          <img class=\"img-responsive img-rounded\" src=\"http://placehold.it/256/163a63\" alt=\"\"/>\n          <h3 class=\"list-group-item-heading\">\n            Something great\n          </h3>\n          <p class=\"list-group-item-text lead\">\n            Donec sed odio dui. Donec id elit non mi porta gravida at eget metus. Donec sed odio dui. Donec id elit non mi porta gravida at eget metus.\n            <br />\n            <a href=\"#\"><small>Details&#8230;</small></a>\n          </p>\n          <div class=\"btn-toolbar pull-right\" role=\"toolbar\" aria-label=\"\">\n            <div class=\"btn-group\">\n              <button type=\"button\" class=\"btn btn-default dropdown-toggle\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\"><i class=\"fa fa-fw fa-list\"></i> <span class=\"caret\"></span></button>\n              <ul class=\"dropdown-menu\">\n                <li><a href=\"#\">Add to new list</a></li>\n                <li role=\"separator\" class=\"divider\"></li>\n                <li><a href=\"#\">A list</a></li>\n                <li><a href=\"#\">Another list</a></li>\n                <li><a href=\"#\">Third list</a></li>\n              </ul>\n            </div>\n            <a href=\"#\" class=\"btn btn-default\">Add to cart</a>\n            <a href=\"#\" class=\"btn btn-primary\">$42.50</a>\n          </div>\n        </li>\n        <li class=\"list-group-item clearfix\">\n          <img class=\"img-responsive img-rounded\" src=\"http://placehold.it/256/163a63\" alt=\"\"/>\n          <h3 class=\"list-group-item-heading\">\n            Another thing\n            <span class=\"label label-default pull-right\">SOLD OUT</span>\n          </h3>\n          <p class=\"list-group-item-text lead\">\n            Cras justo odio, dapibus ac facilisis in, egestas eget quam. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.\n            <br />\n            <a href=\"#\"><small>Details&#8230;</small></a>\n          </p>\n          <div class=\"btn-toolbar pull-right\" role=\"toolbar\" aria-label=\"\">\n            <div class=\"btn-group\">\n              <button type=\"button\" class=\"btn disabled btn-default dropdown-toggle\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\"><i class=\"fa fa-fw fa-list\"></i> <span class=\"caret\"></span></button>\n              <ul class=\"dropdown-menu\">\n                <li><a href=\"#\">Add to new list</a></li>\n                <li role=\"separator\" class=\"divider\"></li>\n                <li><a href=\"#\">A list</a></li>\n                <li><a href=\"#\">Another list</a></li>\n                <li><a href=\"#\">Third list</a></li>\n              </ul>\n            </div>\n            <a href=\"#\" class=\"btn disabled btn-default\">Add to cart</a>\n            <a href=\"#\" class=\"btn disabled btn-primary\">$1.99</a>\n          </div>\n        </li>\n        <li class=\"list-group-item clearfix\">\n          <img class=\"img-responsive img-rounded\" src=\"http://placehold.it/256/163a63\" alt=\"\"/>\n          <h3 class=\"list-group-item-heading\">\n            Yet another item\n          </h3>\n          <p class=\"list-group-item-text lead\">\n            Etiam porta sem malesuada magna mollis euismod. Etiam porta sem malesuada magna mollis euismod.\n            <br />\n            <a href=\"#\"><small>Details&#8230;</small></a>\n          </p>\n          <div class=\"btn-toolbar pull-right\" role=\"toolbar\" aria-label=\"\">\n            <div class=\"btn-group\">\n              <button type=\"button\" class=\"btn btn-default dropdown-toggle\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\"><i class=\"fa fa-fw fa-list\"></i> <span class=\"caret\"></span></button>\n              <ul class=\"dropdown-menu\">\n                <li><a href=\"#\">Add to new list</a></li>\n                <li role=\"separator\" class=\"divider\"></li>\n                <li><a href=\"#\">A list</a></li>\n                <li><a href=\"#\">Another list</a></li>\n                <li><a href=\"#\">Third list</a></li>\n              </ul>\n            </div>\n            <a href=\"#\" class=\"btn btn-default\">Add to cart</a>\n            <a href=\"#\" class=\"btn btn-primary\">$16.00</a>\n          </div>\n        </li>\n        <li class=\"list-group-item clearfix\">\n          <img class=\"img-responsive img-rounded\" src=\"http://placehold.it/256/163a63\" alt=\"\"/>\n          <h3 class=\"list-group-item-heading\">\n            Something else\n          </h3>\n          <p class=\"list-group-item-text lead\">\n            Etiam porta sem malesuada magna mollis euismod. Etiam porta sem malesuada magna mollis euismod.\n            <br />\n            <a href=\"#\"><small>Details&#8230;</small></a>\n          </p>\n          <div class=\"btn-toolbar pull-right\" role=\"toolbar\" aria-label=\"\">\n            <div class=\"btn-group\">\n              <button type=\"button\" class=\"btn btn-default dropdown-toggle\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\"><i class=\"fa fa-fw fa-list\"></i> <span class=\"caret\"></span></button>\n              <ul class=\"dropdown-menu\">\n                <li><a href=\"#\">Add to new list</a></li>\n                <li role=\"separator\" class=\"divider\"></li>\n                <li><a href=\"#\">A list</a></li>\n                <li><a href=\"#\">Another list</a></li>\n                <li><a href=\"#\">Third list</a></li>\n              </ul>\n            </div>\n            <a href=\"#\" class=\"btn btn-default\">Add to cart</a>\n            <a href=\"#\" class=\"btn btn-primary\">$12.99</a>\n          </div>\n        </li>\n        <li class=\"list-group-item clearfix\">\n          <img class=\"img-responsive img-rounded\" src=\"http://placehold.it/256/163a63\" alt=\"\"/>\n          <h3 class=\"list-group-item-heading\">\n            Last thing here\n          </h3>\n          <p class=\"list-group-item-text lead\">\n            Cras mattis consectetur purus sit amet fermentum. Maecenas faucibus mollis interdum. Cras mattis consectetur purus sit amet fermentum. Maecenas faucibus mollis interdum.\n            <br />\n            <a href=\"#\"><small>Details&#8230;</small></a>\n          </p>\n          <div class=\"btn-toolbar pull-right\" role=\"toolbar\" aria-label=\"\">\n            <div class=\"btn-group\">\n              <button type=\"button\" class=\"btn btn-default dropdown-toggle\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\"><i class=\"fa fa-fw fa-list\"></i> <span class=\"caret\"></span></button>\n              <ul class=\"dropdown-menu\">\n                <li><a href=\"#\">Add to new list</a></li>\n                <li role=\"separator\" class=\"divider\"></li>\n                <li><a href=\"#\">A list</a></li>\n                <li><a href=\"#\">Another list</a></li>\n                <li><a href=\"#\">Third list</a></li>\n              </ul>\n            </div>\n            <a href=\"#\" class=\"btn btn-default\">Add to cart</a>\n            <a href=\"#\" class=\"btn btn-success\">Free!</a>\n          </div>\n        </li> -->\n      </ul>\n    </div>\n"
 
 /***/ }),
 
@@ -313,12 +319,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var ArticleListComponent = (function () {
     function ArticleListComponent(articleService) {
         this.articleService = articleService;
+        this.articlesFound = [];
+        this.articlesLost = [];
     }
     ArticleListComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.articleService.getList()
-            .map(function (e) { return _this.articles = e; })
-            .subscribe();
+            .subscribe(function (art) {
+            _this.articles = art;
+            art.forEach(function (a) {
+                if (a.status === "lost")
+                    _this.articlesLost.push(a);
+                else
+                    _this.articlesFound.push(a);
+            });
+            console.log(_this.articlesFound, _this.articlesLost);
+        });
     };
     return ArticleListComponent;
 }());
@@ -344,7 +360,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, "agm-map {\n  height: 200px;\n  width: 100%;\n}\n", ""]);
 
 // exports
 
@@ -357,7 +373,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/create-article/create-article.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!-- <h1> Submit an article! </h1>\n<a [routerLink]=\"['']\"> Back to home </a> -->\n\n<!-- <select name=\"\" form=\"createarticle\">\n  <option value=\"lost\">Lost</option>\n  <option value=\"found\" selected>Found</option>\n</select>\n\n<form id=\"createarticle\">\n    <label> Name* </label>\n    <input type=\"text\" [(ngModel)]=\"newArticle.name\" name=\"name\" required />\n\n    <label> Description* </label>\n    <input type=\"text\" [(ngModel)]=\"newArticle.name\" name=\"description\" required />\n\n    <label> Localization* </label>\n    <input type=\"text\" [(ngModel)]=\"newArticle.localization\" name=\"localization\" required />\n\n    <label> Date* </label>\n    <input type=\"date\" [(ngModel)]=\"newArticle.date\" name=\"date\" required />\n\n    <label> Reward* </label>\n    <input type=\"number\" [(ngModel)]=\"newArticle.reward\" name=\"reward\" required />\n\n <input type=\"file\" name=\"file\"  id=\"file\" ng2FileSelect [uploader]=\"uploader\" />\n  <button (click)=\"create()\"> Create Article </button>\n</form> -->\n\n\n<div class=\"container\">\n\n  <form class=\"well form-horizontal\"  method=\"post\" id=\"contact_form\">\n    <fieldset>\n\n      <!-- Form Name -->\n      <legend style=\"text-align: center;\">Submit an article!</legend>\n\n      <!-- Text input-->\n\n      <div class=\"form-group\">\n        <label class=\"col-md-4 control-label\">Name</label>\n        <div class=\"col-md-4 inputGroupContainer\">\n          <div class=\"input-group\">\n            <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-user\"></i></span>\n            <input [(ngModel)]=\"newArticle.name\" name=\"name\" placeholder=\"Name\" class=\"form-control\" type=\"text\">\n          </div>\n        </div>\n      </div>\n\n      <!-- Text input-->\n\n      <div class=\"form-group\">\n        <label class=\"col-md-4 control-label\">Description</label>\n        <div class=\"col-md-4 inputGroupContainer\">\n          <div class=\"input-group\">\n            <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-pencil\"></i></span>\n            <input [(ngModel)]=\"newArticle.description\" name=\"description\" placeholder=\"Description\" class=\"form-control\" type=\"text\">\n          </div>\n        </div>\n      </div>\n\n      <!-- Text input-->\n      <div class=\"form-group\">\n        <label class=\"col-md-4 control-label\">Localization</label>\n        <div class=\"col-md-4 inputGroupContainer\">\n          <div class=\"input-group\">\n            <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-map-marker\"></i></span>\n            <input [(ngModel)]=\"newArticle.localization\" name=\"localization\" placeholder=\"Localization\" class=\"form-control\" type=\"text\">\n          </div>\n        </div>\n      </div>\n\n\n      <!-- Text input-->\n\n      <div class=\"form-group\">\n        <label class=\"col-md-4 control-label\">Date</label>\n        <div class=\"col-md-4 inputGroupContainer\">\n          <div class=\"input-group\">\n            <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-calendar\"></i></span>\n            <input [(ngModel)]=\"newArticle.date\" name=\"date\" placeholder=\"Date\" class=\"form-control\" type=\"date\">\n          </div>\n        </div>\n      </div>\n\n      <!-- Text input-->\n\n      <div class=\"form-group\">\n        <label class=\"col-md-4 control-label\">Reward</label>\n        <div class=\"col-md-4 inputGroupContainer\">\n          <div class=\"input-group\">\n            <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-usd\"></i></span>\n            <input [(ngModel)]=\"newArticle.reward\" name=\"reward\" placeholder=\"Reward\" class=\"form-control\" type=\"number\">\n          </div>\n        </div>\n      </div>\n\n      <!-- Select Basic -->\n\n      <div class=\"form-group\">\n        <label class=\"col-md-4 control-label\">Lost or found?</label>\n        <div class=\"col-md-4 selectContainer\">\n          <div class=\"input-group\">\n            <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-list\"></i></span>\n            <select name=\"\" form=\"contact_form\" class=\"form-control selectpicker\">\n      <option value=\" \" >Have you lost or found this item?</option>\n      <option>I have lost this item</option>\n      <option>I have found this item</option>\n    </select>\n          </div>\n        </div>\n      </div>\n\n\n\n      <div class=\"form-group\">\n        <label class=\"col-md-4 control-label\">Upload image</label>\n        <div class=\"col-md-4 inputGroupContainer\">\n          <div class=\"input-group\">\n            <input type=\"file\" name=\"file\" id=\"file\" ng2FileSelect [uploader]=\"uploader\" />\n          </div>\n        </div>\n      </div>\n\n\n      <!-- Button -->\n      <div class=\"form-group\">\n        <label class=\"col-md-4 control-label\"></label>\n        <div class=\"col-md-4\">\n          <button (click)=\"create()\" class=\"btn btn-warning\">Submit product <span class=\"glyphicon glyphicon-send\"></span></button>\n        </div>\n      </div>\n\n    </fieldset>\n  </form>\n</div>\n<!-- /.container -->\n"
+module.exports = "<!-- <h1> Submit an article! </h1>\n<a [routerLink]=\"['']\"> Back to home </a> -->\n\n<!-- <select name=\"\" form=\"createarticle\">\n  <option value=\"lost\">Lost</option>\n  <option value=\"found\" selected>Found</option>\n</select>\n\n<form id=\"createarticle\">\n    <label> Name* </label>\n    <input type=\"text\" [(ngModel)]=\"newArticle.name\" name=\"name\" required />\n\n    <label> Description* </label>\n    <input type=\"text\" [(ngModel)]=\"newArticle.name\" name=\"description\" required />\n\n    <label> Localization* </label>\n    <input type=\"text\" [(ngModel)]=\"newArticle.localization\" name=\"localization\" required />\n\n    <label> Date* </label>\n    <input type=\"date\" [(ngModel)]=\"newArticle.date\" name=\"date\" required />\n\n    <label> Reward* </label>\n    <input type=\"number\" [(ngModel)]=\"newArticle.reward\" name=\"reward\" required />\n\n <input type=\"file\" name=\"file\"  id=\"file\" ng2FileSelect [uploader]=\"uploader\" />\n  <button (click)=\"create()\"> Create Article </button>\n</form> -->\n\n<div class=\"container\">\n\n  <form class=\"well form-horizontal\"  method=\"post\" id=\"contact_form\">\n    <fieldset>\n\n      <!-- Form Name -->\n      <h3 style=\"text-align: center;\">Submit an article!</h3>\n\n      <!-- Text input-->\n\n      <div class=\"form-group\">\n        <label class=\"col-md-4 control-label\">Name</label>\n        <div class=\"col-md-4 inputGroupContainer\">\n          <div class=\"input-group\">\n            <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-user\"></i></span>\n            <input [(ngModel)]=\"newArticle.name\" name=\"name\" placeholder=\"Name\" class=\"form-control\" type=\"text\">\n          </div>\n        </div>\n      </div>\n\n      <!-- Text input-->\n\n      <div class=\"form-group\">\n        <label class=\"col-md-4 control-label\">Description</label>\n        <div class=\"col-md-4 inputGroupContainer\">\n          <div class=\"input-group\">\n            <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-pencil\"></i></span>\n            <input [(ngModel)]=\"newArticle.description\" name=\"description\" placeholder=\"Description\" class=\"form-control\" type=\"text\">\n          </div>\n        </div>\n      </div>\n\n\n      <!-- Text input-->\n\n      <div class=\"form-group\">\n        <label class=\"col-md-4 control-label\">Date</label>\n        <div class=\"col-md-4 inputGroupContainer\">\n          <div class=\"input-group\">\n            <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-calendar\"></i></span>\n            <input [(ngModel)]=\"newArticle.date\" name=\"date\" placeholder=\"Date\" class=\"form-control\" type=\"date\">\n          </div>\n        </div>\n      </div>\n\n      <!-- Text input-->\n\n      <div class=\"form-group\">\n        <label class=\"col-md-4 control-label\">Reward</label>\n        <div class=\"col-md-4 inputGroupContainer\">\n          <div class=\"input-group\">\n            <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-usd\"></i></span>\n            <input [(ngModel)]=\"newArticle.reward\" name=\"reward\" placeholder=\"Reward\" class=\"form-control\" type=\"number\">\n          </div>\n        </div>\n      </div>\n\n      <!-- Select Basic -->\n\n      <div class=\"form-group\">\n        <label class=\"col-md-4 control-label\">Lost or found?</label>\n        <div class=\"col-md-4 selectContainer\">\n          <div class=\"input-group\">\n            <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-list\"></i></span>\n            <select [(ngModel)]=\"newArticle.status\" name=\"status\" form=\"contact_form\" class=\"form-control selectpicker\">\n      <!-- <option value=\"\" >Have you lost or found this item?</option> -->\n      <option  value=\"lost\">I have lost this item</option>\n      <option  value=\"found\">I have found this item</option>\n    </select>\n          </div>\n        </div>\n      </div>\n\n\n\n      <div class=\"form-group\">\n        <label class=\"col-md-4 control-label\">Upload image</label>\n        <div class=\"col-md-4 inputGroupContainer\">\n          <div class=\"input-group\">\n            <input type=\"file\" name=\"file\" id=\"file\" ng2FileSelect [uploader]=\"uploader\" />\n          </div>\n        </div>\n      </div>\n\n\n      <!-- Text input-->\n      <!-- <div class=\"form-group\">\n        <label class=\"col-md-4 control-label\">Localization</label>\n        <div class=\"col-md-4 inputGroupContainer\">\n          <div class=\"input-group\">\n            <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-map-marker\"></i></span>\n            <input [(ngModel)]=\"newArticle.localization\" name=\"localization\" placeholder=\"Localization\" class=\"form-control\" type=\"text\">\n          </div>\n        </div>\n      </div> -->\n      <h4 style=\"text-align: center;\">Where did you lost or find the article?</h4>\n\n      <div class=\"form-group\">\n        <label class=\"col-md-4 control-label\">Street and number</label>\n        <div class=\"col-md-4 inputGroupContainer\">\n          <div class=\"input-group\">\n            <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-map-marker\"></i></span>\n            <input [(ngModel)]=\"newArticle.street\" name=\"street\" placeholder=\"Street and number\" class=\"form-control\" type=\"text\">\n          </div>\n        </div>\n      </div>\n\n\n      <div class=\"form-group\">\n        <label class=\"col-md-4 control-label\">City</label>\n        <div class=\"col-md-4 inputGroupContainer\">\n          <div class=\"input-group\">\n            <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-map-marker\"></i></span>\n            <input [(ngModel)]=\"newArticle.city\" name=\"city\" placeholder=\"City\" class=\"form-control\" type=\"text\">\n          </div>\n        </div>\n      </div>\n\n\n      <div class=\"form-group\">\n        <label class=\"col-md-4 control-label\">Country</label>\n        <div class=\"col-md-4 inputGroupContainer\">\n          <div class=\"input-group\">\n            <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-map-marker\"></i></span>\n            <input [(ngModel)]=\"newArticle.country\" name=\"country\" placeholder=\"Country\" class=\"form-control\" type=\"text\">\n          </div>\n        </div>\n      </div>\n\n\n\n      <div class=\"container\">\n          <div class=\"row\">\n            <div class=\"col-xs-3 col-md-3\">\n            </div>\n            <div class=\"col-xs-5 col-md-5\">\n              <agm-map [latitude]=\"lat\" [longitude]=\"lng\">\n              <agm-marker [latitude]=\"lat\" [longitude]=\"lng\"></agm-marker>\n              </agm-map>\n            </div>\n            <div class=\"col-xs-4 col-md-4\">\n            </div>\n          </div>\n        </div>\n\n      <br />\n\n      <!-- Button -->\n      <div class=\"form-group\">\n        <div class=\"col-md-5\"></div>\n        <!-- <label class=\"col-md-4 control-label\"></label> -->\n        <div class=\"col-md-2\">\n          <button (click)=\"create()\" class=\"btn btn-warning\">Submit product <span class=\"glyphicon glyphicon-send\"></span></button>\n        </div>\n        <div class=\"col-md-5\"></div>\n      </div>\n\n    </fieldset>\n  </form>\n</div>\n<!-- /.container -->\n"
 
 /***/ }),
 
@@ -391,15 +407,23 @@ var CreateArticleComponent = (function () {
         this.router = router;
         this.articleService = articleService;
         this.uploader = new __WEBPACK_IMPORTED_MODULE_1_ng2_file_upload__["FileUploader"]({
-            url: __WEBPACK_IMPORTED_MODULE_2__environments_environment__["a" /* environment */].BASE_URL + "/api"
+            url: __WEBPACK_IMPORTED_MODULE_2__environments_environment__["a" /* environment */].BASE_URL + "/api/newArticle"
         });
         this.newArticle = {
             name: '',
             description: '',
             date: '',
-            localization: '',
-            reward: null
+            lat: '',
+            lng: '',
+            street: '',
+            city: '',
+            country: '',
+            // localization: '',
+            reward: null,
+            status: ''
         };
+        this.lat = 40.3925362;
+        this.lng = -3.7004556;
     }
     CreateArticleComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -411,15 +435,28 @@ var CreateArticleComponent = (function () {
     };
     CreateArticleComponent.prototype.create = function () {
         var _this = this;
-        this.articleService.createArticle(this.newArticle);
-        this.uploader.onBuildItemForm = function (item, form) {
-            form.append('name', _this.newArticle.name);
-            form.append('description', _this.newArticle.description);
-            form.append('date', _this.newArticle.date);
-            form.append('localization', _this.newArticle.localization);
-            form.append('reward', _this.newArticle.reward);
-        };
-        this.uploader.uploadAll();
+        console.log("FUNCION CREATE");
+        var address = this.newArticle.street + ',' + this.newArticle.city + ',' + this.newArticle.country;
+        this.articleService.getGeoData(address)
+            .subscribe(function (result) {
+            _this.newArticle.lat = result.json().results[0].geometry.location.lat;
+            _this.newArticle.lng = result.json().results[0].geometry.location.lng;
+            _this.articleService.createArticle(_this.newArticle);
+            _this.uploader.onBuildItemForm = function (item, form) {
+                form.append('name', _this.newArticle.name);
+                form.append('description', _this.newArticle.description);
+                form.append('date', _this.newArticle.date);
+                form.append('lat', _this.newArticle.lat);
+                form.append('lng', _this.newArticle.lng);
+                // form.append('street', this.newArticle.street);
+                // form.append('city', this.newArticle.city);
+                // form.append('country', this.newArticle.country);
+                // form.append('localization', this.newArticle.localization);
+                form.append('reward', _this.newArticle.reward);
+                form.append('status', _this.newArticle.status);
+            };
+            _this.uploader.uploadAll();
+        });
     };
     return CreateArticleComponent;
 }());
@@ -434,6 +471,85 @@ CreateArticleComponent = __decorate([
 
 var _a, _b;
 //# sourceMappingURL=create-article.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/found-articles/found-articles.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "body {background-color:#163a63; color:#163a63; padding-top:15px;}\n\n.list-group {box-shadow: 0px 11px 23px 5px rgba(0,0,0,0.34);}\n\n.list-group-item {background-color: rgba(255,255,255,0.7); border:0;}\n\n.btn-toolbar {margin-top:10px;}\n\nimg {\n  float:left;\n  margin-right:15px;\n  height: 128px;\n  width: 128px;\n}\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/found-articles/found-articles.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"container\">\n  <ul class=\"list-group\">\n    <li *ngFor=\"let article of articlesFound\" class=\"list-group-item clearfix\">\n      <img class=\"img-responsive img-rounded\" [src]=\"'http://localhost:3000' + article.image\" height=100 alt=\"\"/>\n      <h3 class=\"list-group-item-heading\">\n        {{ article.name }}\n      </h3>\n      <p class=\"list-group-item-text lead\">\n        {{ article.description }}\n        <br />\n        <a [routerLink]=\"['/article-details', article._id]\"><small>Details&#8230;</small></a>\n      </p>\n      <div class=\"btn-toolbar pull-right\" role=\"toolbar\" aria-label=\"\">\n        <div class=\"btn-group\">\n          <button type=\"button\" class=\"btn btn-default dropdown-toggle\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\"><i class=\"fa fa-fw fa-list\"></i> <span class=\"caret\"></span></button>\n          <ul class=\"dropdown-menu\">\n            <li><a href=\"#\">Add to new list</a></li>\n            <li role=\"separator\" class=\"divider\"></li>\n            <li><a href=\"#\">A list</a></li>\n            <li><a href=\"#\">Another list</a></li>\n            <li><a href=\"#\">Third list</a></li>\n          </ul>\n        </div>\n        <a href=\"#\" class=\"btn btn-default\">Add to cart</a>\n        <a href=\"#\" class=\"btn btn-primary\">$29.99</a>\n      </div>\n    </li>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/found-articles/found-articles.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_article_service__ = __webpack_require__("../../../../../src/app/services/article.service.ts");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FoundArticlesComponent; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var FoundArticlesComponent = (function () {
+    function FoundArticlesComponent(articleService) {
+        this.articleService = articleService;
+        this.articlesFound = [];
+        this.articlesLost = [];
+    }
+    FoundArticlesComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.articleService.getList()
+            .subscribe(function (art) {
+            _this.articles = art;
+            art.forEach(function (a) {
+                if (a.status === "lost")
+                    _this.articlesLost.push(a);
+                else
+                    _this.articlesFound.push(a);
+            });
+            console.log(_this.articlesFound, _this.articlesLost);
+        });
+    };
+    return FoundArticlesComponent;
+}());
+FoundArticlesComponent = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        selector: 'app-found-articles',
+        template: __webpack_require__("../../../../../src/app/found-articles/found-articles.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/found-articles/found-articles.component.css")]
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_article_service__["a" /* ArticleService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_article_service__["a" /* ArticleService */]) === "function" && _a || Object])
+], FoundArticlesComponent);
+
+var _a;
+//# sourceMappingURL=found-articles.component.js.map
 
 /***/ }),
 
@@ -582,6 +698,85 @@ var _a, _b, _c;
 
 /***/ }),
 
+/***/ "../../../../../src/app/lost-articles/lost-articles.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "body {background-color:#163a63; color:#163a63; padding-top:15px;}\n\n.list-group {box-shadow: 0px 11px 23px 5px rgba(0,0,0,0.34);}\n\n.list-group-item {background-color: rgba(255,255,255,0.7); border:0;}\n\n.btn-toolbar {margin-top:10px;}\n\nimg {\n  float:left;\n  margin-right:15px;\n  height: 128px;\n  width: 128px;\n}\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/lost-articles/lost-articles.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"container\">\n  <ul class=\"list-group\">\n    <li *ngFor=\"let article of articlesLost\" class=\"list-group-item clearfix\">\n      <img class=\"img-responsive img-rounded\" [src]=\"'http://localhost:3000' + article.image\" height=100 alt=\"\"/>\n      <h3 class=\"list-group-item-heading\">\n        {{ article.name }}\n      </h3>\n      <p class=\"list-group-item-text lead\">\n        {{ article.description }}\n        <br />\n        <a [routerLink]=\"['/article-details', article._id]\"><small>Details&#8230;</small></a>\n      </p>\n      <div class=\"btn-toolbar pull-right\" role=\"toolbar\" aria-label=\"\">\n        <div class=\"btn-group\">\n          <button type=\"button\" class=\"btn btn-default dropdown-toggle\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\"><i class=\"fa fa-fw fa-list\"></i> <span class=\"caret\"></span></button>\n          <ul class=\"dropdown-menu\">\n            <li><a href=\"#\">Add to new list</a></li>\n            <li role=\"separator\" class=\"divider\"></li>\n            <li><a href=\"#\">A list</a></li>\n            <li><a href=\"#\">Another list</a></li>\n            <li><a href=\"#\">Third list</a></li>\n          </ul>\n        </div>\n        <a href=\"#\" class=\"btn btn-default\">Add to cart</a>\n        <a href=\"#\" class=\"btn btn-primary\">$29.99</a>\n      </div>\n    </li>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/lost-articles/lost-articles.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_article_service__ = __webpack_require__("../../../../../src/app/services/article.service.ts");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LostArticlesComponent; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var LostArticlesComponent = (function () {
+    function LostArticlesComponent(articleService) {
+        this.articleService = articleService;
+        this.articlesFound = [];
+        this.articlesLost = [];
+    }
+    LostArticlesComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.articleService.getList()
+            .subscribe(function (art) {
+            _this.articles = art;
+            art.forEach(function (a) {
+                if (a.status === "lost")
+                    _this.articlesLost.push(a);
+                else
+                    _this.articlesFound.push(a);
+            });
+            console.log(_this.articlesFound, _this.articlesLost);
+        });
+    };
+    return LostArticlesComponent;
+}());
+LostArticlesComponent = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        selector: 'app-lost-articles',
+        template: __webpack_require__("../../../../../src/app/lost-articles/lost-articles.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/lost-articles/lost-articles.component.css")]
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_article_service__["a" /* ArticleService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_article_service__["a" /* ArticleService */]) === "function" && _a || Object])
+], LostArticlesComponent);
+
+var _a;
+//# sourceMappingURL=lost-articles.component.js.map
+
+/***/ }),
+
 /***/ "../../../../../src/app/routes.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -593,8 +788,12 @@ var _a, _b, _c;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__article_details_article_details_component__ = __webpack_require__("../../../../../src/app/article-details/article-details.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__article_list_article_list_component__ = __webpack_require__("../../../../../src/app/article-list/article-list.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__create_article_create_article_component__ = __webpack_require__("../../../../../src/app/create-article/create-article.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_isLoggedIn_canactivate_service__ = __webpack_require__("../../../../../src/app/services/isLoggedIn.canactivate.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__found_articles_found_articles_component__ = __webpack_require__("../../../../../src/app/found-articles/found-articles.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__lost_articles_lost_articles_component__ = __webpack_require__("../../../../../src/app/lost-articles/lost-articles.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_isLoggedIn_canactivate_service__ = __webpack_require__("../../../../../src/app/services/isLoggedIn.canactivate.service.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return routes; });
+
+
 
 
 
@@ -605,12 +804,15 @@ var _a, _b, _c;
 
 var routes = [
     { path: '', component: __WEBPACK_IMPORTED_MODULE_0__home_home_component__["a" /* HomeComponent */] },
-    { path: 'user', component: __WEBPACK_IMPORTED_MODULE_1__userprofile_userprofile_component__["a" /* UserprofileComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_7__services_isLoggedIn_canactivate_service__["a" /* IsLoggedInService */]] },
+    { path: 'user', component: __WEBPACK_IMPORTED_MODULE_1__userprofile_userprofile_component__["a" /* UserprofileComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_9__services_isLoggedIn_canactivate_service__["a" /* IsLoggedInService */]] },
     { path: 'login', component: __WEBPACK_IMPORTED_MODULE_2__loginform_loginform_component__["a" /* LoginformComponent */], },
     { path: 'signup', component: __WEBPACK_IMPORTED_MODULE_3__signupform_signupform_component__["a" /* SignupformComponent */], },
     { path: 'article-details/:id', component: __WEBPACK_IMPORTED_MODULE_4__article_details_article_details_component__["a" /* ArticleDetailsComponent */] },
     { path: 'article-list', component: __WEBPACK_IMPORTED_MODULE_5__article_list_article_list_component__["a" /* ArticleListComponent */] },
     { path: 'create-article', component: __WEBPACK_IMPORTED_MODULE_6__create_article_create_article_component__["a" /* CreateArticleComponent */] },
+    { path: 'newArticle', component: __WEBPACK_IMPORTED_MODULE_6__create_article_create_article_component__["a" /* CreateArticleComponent */] },
+    { path: 'found-articles', component: __WEBPACK_IMPORTED_MODULE_7__found_articles_found_articles_component__["a" /* FoundArticlesComponent */] },
+    { path: 'lost-articles', component: __WEBPACK_IMPORTED_MODULE_8__lost_articles_lost_articles_component__["a" /* LostArticlesComponent */] },
 ];
 //# sourceMappingURL=routes.js.map
 
@@ -655,8 +857,14 @@ var ArticleService = (function () {
             .map(function (res) { return res.json(); });
     };
     ArticleService.prototype.createArticle = function (newArticle) {
-        return this.http.post(this.BASE_URL + "/api", newArticle, this.options)
+        console.log("NEW ARTICLE", newArticle);
+        console.log("" + this.BASE_URL);
+        return this.http.post(this.BASE_URL + "/api/newArticle", newArticle, this.options)
             .map(function (res) { return res.json(); });
+    };
+    ArticleService.prototype.getGeoData = function (address) {
+        // Aquí va la URL de la API de Google Maps
+        return this.http.get('http://maps.google.com/maps/api/geocode/json?address=' + address);
     };
     return ArticleService;
 }());
