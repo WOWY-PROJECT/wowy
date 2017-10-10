@@ -5,10 +5,26 @@
   <div class="article-thumbnail">
     <img height="300" [src]="BASE_URL + article.image" />
   </div>
-  <button (click)="deleteArticle()">Delete this article</button>
+
   <div class="article-info">
     <h2> {{ article.name }}&nbsp;</h2>
     <h3> {{ article.description }} </h3>
+    <h3> {{ article.reward }} </h3>
+
+
+    <div class="container">
+        <div class="row">
+          <div class="col-xs-3 col-md-3">
+          </div>
+          <div class="col-xs-5 col-md-5">
+            <agm-map [latitude]="article.lat" [longitude]="article.lng">
+            <agm-marker [latitude]="article.lat" [longitude]="article.lng"></agm-marker>
+            </agm-map>
+          </div>
+          <div class="col-xs-4 col-md-4">
+          </div>
+        </div>
+      </div>
 
     <!-- <div *ngIf="article.specs.length">
       <h4> Features </h4>
@@ -16,6 +32,6 @@
         <li *ngFor="let spec of article.specs"> {{ spec&nbsp;}} </li>
       </ul>
     </div> -->
-    
+
   </div>
 </div>

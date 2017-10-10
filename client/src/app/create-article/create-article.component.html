@@ -26,14 +26,13 @@
   <button (click)="create()"> Create Article </button>
 </form> -->
 
-
 <div class="container">
 
   <form class="well form-horizontal"  method="post" id="contact_form">
     <fieldset>
 
       <!-- Form Name -->
-      <legend style="text-align: center;">Submit an article!</legend>
+      <h3 style="text-align: center;">Submit an article!</h3>
 
       <!-- Text input-->
 
@@ -55,17 +54,6 @@
           <div class="input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
             <input [(ngModel)]="newArticle.description" name="description" placeholder="Description" class="form-control" type="text">
-          </div>
-        </div>
-      </div>
-
-      <!-- Text input-->
-      <div class="form-group">
-        <label class="col-md-4 control-label">Localization</label>
-        <div class="col-md-4 inputGroupContainer">
-          <div class="input-group">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
-            <input [(ngModel)]="newArticle.localization" name="localization" placeholder="Localization" class="form-control" type="text">
           </div>
         </div>
       </div>
@@ -123,12 +111,76 @@
       </div>
 
 
+      <!-- Text input-->
+      <!-- <div class="form-group">
+        <label class="col-md-4 control-label">Localization</label>
+        <div class="col-md-4 inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
+            <input [(ngModel)]="newArticle.localization" name="localization" placeholder="Localization" class="form-control" type="text">
+          </div>
+        </div>
+      </div> -->
+      <h4 style="text-align: center;">Where did you lost or find the article?</h4>
+
+      <div class="form-group">
+        <label class="col-md-4 control-label">Street and number</label>
+        <div class="col-md-4 inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
+            <input [(ngModel)]="newArticle.street" name="street" placeholder="Street and number" class="form-control" type="text">
+          </div>
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <label class="col-md-4 control-label">City</label>
+        <div class="col-md-4 inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
+            <input [(ngModel)]="newArticle.city" name="city" placeholder="City" class="form-control" type="text">
+          </div>
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <label class="col-md-4 control-label">Country</label>
+        <div class="col-md-4 inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
+            <input [(ngModel)]="newArticle.country" name="country" placeholder="Country" class="form-control" type="text">
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="container">
+          <div class="row">
+            <div class="col-xs-3 col-md-3">
+            </div>
+            <div class="col-xs-5 col-md-5">
+              <agm-map [latitude]="lat" [longitude]="lng">
+              <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+              </agm-map>
+            </div>
+            <div class="col-xs-4 col-md-4">
+            </div>
+          </div>
+        </div>
+
+      <br />
+
       <!-- Button -->
       <div class="form-group">
-        <label class="col-md-4 control-label"></label>
-        <div class="col-md-4">
+        <div class="col-md-5"></div>
+        <!-- <label class="col-md-4 control-label"></label> -->
+        <div class="col-md-2">
           <button (click)="create()" class="btn btn-warning">Submit product <span class="glyphicon glyphicon-send"></span></button>
         </div>
+        <div class="col-md-5"></div>
       </div>
 
     </fieldset>

@@ -16,6 +16,9 @@ import { ArticleDetailsComponent } from './article-details/article-details.compo
 import { ArticleListComponent } from './article-list/article-list.component';
 import { CreateArticleComponent } from './create-article/create-article.component';
 import { FileUploadModule } from "ng2-file-upload";
+import { AgmCoreModule } from '@agm/core';
+import { LostArticlesComponent } from './lost-articles/lost-articles.component';
+import { FoundArticlesComponent } from './found-articles/found-articles.component';
 
 @NgModule({
   declarations: [
@@ -26,14 +29,20 @@ import { FileUploadModule } from "ng2-file-upload";
     SignupformComponent,
     ArticleDetailsComponent,
     ArticleListComponent,
-    CreateArticleComponent
+    CreateArticleComponent,
+    LostArticlesComponent,
+    FoundArticlesComponent
   ],
   imports: [
     FileUploadModule,
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    AgmCoreModule.forRoot({
+      // apiKey: 'AIzaSyB-DfsZKYeYeWSaycvNrkVe-x_lseyD8i8'
+      apiKey: 'AIzaSyD6AD8ltoPLTqS8ahgnWXfwkK9JLiYcdTw'
+    })
   ],
   providers: [AuthService, IsLoggedInService, ArticleService, CreateArticleComponent],
   bootstrap: [AppComponent]

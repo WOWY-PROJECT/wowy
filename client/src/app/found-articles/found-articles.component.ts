@@ -1,16 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import {ArticleService} from '../services/article.service';
 import {Observable} from 'rxjs/Observable';
+
 @Component({
-  selector: 'app-article-list',
-  templateUrl: './article-list.component.html',
-  styleUrls: ['./article-list.component.css']
+  selector: 'app-found-articles',
+  templateUrl: './found-articles.component.html',
+  styleUrls: ['./found-articles.component.css']
 })
-export class ArticleListComponent implements OnInit {
+export class FoundArticlesComponent implements OnInit {
+
   articles;
   articlesFound: Array<string> = [];
   articlesLost: Array<string> = [];
-
 
   constructor(public articleService:ArticleService) { }
 
@@ -26,7 +27,6 @@ export class ArticleListComponent implements OnInit {
       })
       console.log(this.articlesFound, this.articlesLost);
     });
-
   }
 
 }

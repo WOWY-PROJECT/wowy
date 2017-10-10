@@ -31,7 +31,12 @@ router.post('/newArticle',upload.single('file'), (req, res, next) => {
     name: req.body.name,
     description: req.body.description,
     date: req.body.date,
-    localization: req.body.localization,
+    lat: req.body.lat,
+    lng: req.body.lng,
+    // localization: req.body.localization,
+    // street: req.body.street,
+    // city: req.body.city,
+    // country: req.body.country,
     status: req.body.status,
     reward: req.body.reward,
     image: `/uploads/${req.file.filename}` || ''
@@ -56,7 +61,12 @@ router.get('/articles/:id', checkIDParam, (req, res) => {
         name : p.name,
         image : "https://wowy-project.herokuapp.com" + p.image,
         description : p.description,
-        localization : p.localization,
+        lat: p.lat,
+        lng: p.lng,
+        // localization : p.localization,
+        // street: p.street,
+        // city: p.city,
+        // country: p.country,
         reward : p.reward,
         status : p.status
       }

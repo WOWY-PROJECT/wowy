@@ -28,6 +28,11 @@ export class ArticleService {
       .map((res) => res.json());
   }
 
+  getGeoData(address){
+    // Aquí va la URL de la API de Google Maps
+    return this.http.get('http://maps.google.com/maps/api/geocode/json?address='+address);
+  }
+
   // edit(article) {
   //   return this.http.put(`${this.BASE_URL}/api/articles/${article.id}`, article)
   //     .map((res) => res.json());

@@ -13,10 +13,25 @@ const articleSchema = new mongoose.Schema({
     type: String,
     default: ''
   },
-  localization: {
-    type: String,
-    default: []
+  lat: {
+    type: Number
   },
+  lng: {
+    type: Number
+  },
+  // street: {
+  //   type: String
+  // },
+  // city: {
+  //   type: String
+  // },
+  // country: {
+  //   type: String
+  // },
+  // localization: {
+  //   type: String,
+  //   default: []
+  // },
   date: {
     type: Date
   },
@@ -25,8 +40,8 @@ const articleSchema = new mongoose.Schema({
     default: 0
   },
   status: {
-    type: Boolean,
-    default: true
+    type: String,
+    enum: ['found', 'lost']
   }
   // uploader: {  //No funciona al subir el seeds
   //   type:Schema.Types.ObjectId,

@@ -7,6 +7,8 @@ import { SignupformComponent } from './signupform/signupform.component';
 import { ArticleDetailsComponent } from './article-details/article-details.component';
 import { ArticleListComponent } from './article-list/article-list.component';
 import { CreateArticleComponent } from './create-article/create-article.component';
+import { FoundArticlesComponent } from './found-articles/found-articles.component';
+import { LostArticlesComponent } from './lost-articles/lost-articles.component';
 
 
 import { IsLoggedInService } from './services/isLoggedIn.canactivate.service';
@@ -20,5 +22,7 @@ export const routes: Routes = [
   { path: 'article-list', component: ArticleListComponent },
   { path: 'create-article', component: CreateArticleComponent },
   { path: 'newArticle', component: CreateArticleComponent },
+  { path: 'found-articles', component: FoundArticlesComponent },
+  { path: 'lost-articles', component: LostArticlesComponent },
   //{ path: '**', redirectTo: '' }
 ];
