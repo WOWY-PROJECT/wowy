@@ -17,7 +17,7 @@ export class ArticleService {
   }
 
   get(id) {
-    return this.http.get(`${this.BASE_URL}/api/articles/${id}`)
+    return this.http.get(`${this.BASE_URL}/api/articles/${id}`, this.options)
       .map((res) => res.json());
   }
 

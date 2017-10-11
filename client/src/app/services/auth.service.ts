@@ -19,13 +19,13 @@ export class AuthService {
     // this.isLoggedIn().subscribe()
   }
 
-    // public getLoginEventEmitter():EventEmitter<any>{
-    //   return this.userLoginEvent
-    // }
-    //
-    // public getUser(){
-    //   return this.user
-    // }
+    public getLoginEventEmitter():EventEmitter<any>{
+      return this.userLoginEvent
+    }
+
+    public getUser(){
+      return this.user
+    }
 
     private emitUserLoginEvent(user){
       this.user = user

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from './services/auth.service';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -13,17 +14,23 @@ export class AppComponent {
     // this.user = this.auth.getUser();
     // this.auth.getLoginEventEmitter()
     //     .subscribe( user => this.user=user );
+
+  }
+
+
+  ngOnInit() {
     this.auth.isLoggedIn()
     .subscribe(
-      (user => this.user = user),
+      (user =>
+        { this.user = user
+        console.log(this.user)
+      }),
       (err => {
         this.error = err
         this.user = null;
       })
     )
-  }
 
-  ngOnInit() {
   }
 
   logout() {

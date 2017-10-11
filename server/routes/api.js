@@ -2,6 +2,8 @@ const router = require('express').Router();
 const mongoose = require('mongoose');
 const upload = require('../config/multer');
 const Article = require('../models/Article');
+const User = require('../models/User');
+
 
 const checkIDParam = (req,res,next) =>{
   if(!mongoose.Types.ObjectId.isValid(req.params.id)) {
@@ -26,8 +28,11 @@ router.get('/articles', (req, res, next) => {
 
 /* CREATE a new Article. */
 router.post('/newArticle',upload.single('file'), (req, res, next) => {
-  console.log("CREATE NEW ARTICLE")
+  console.log("CREATE NEW ARTICLE");
+  console.log(req.user);
+  console.log(req.file)
   const theArticle = new Article({
+    creator: req.body.creator,
     name: req.body.name,
     description: req.body.description,
     date: req.body.date,
@@ -39,7 +44,7 @@ router.post('/newArticle',upload.single('file'), (req, res, next) => {
     // country: req.body.country,
     status: req.body.status,
     reward: req.body.reward,
-    image: `/uploads/${req.file.filename}` || ''
+    image: `/uploads/${req.file.filename}`
   })
   console.log(theArticle)
   theArticle.save()
@@ -56,8 +61,10 @@ router.post('/newArticle',upload.single('file'), (req, res, next) => {
 /* GET a single Article. */
 router.get('/articles/:id', checkIDParam, (req, res) => {
   Article.findById(req.params.id)
-    .then(p => {
+  .populate("username")
+  .then(p => {
       let articuloNuevo = {
+        username : p.username,
         name : p.name,
         image : "https://wowy-project.herokuapp.com" + p.image,
         description : p.description,
@@ -66,7 +73,7 @@ router.get('/articles/:id', checkIDParam, (req, res) => {
         // localization : p.localization,
         // street: p.street,
         // city: p.city,
-        // country: p.country,
+        // country: p.country
         reward : p.reward,
         status : p.status
       }

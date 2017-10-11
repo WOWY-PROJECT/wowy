@@ -39,6 +39,8 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+require('./passport/serializers');
+require('./passport/local');
 
 app.use(session({
   secret: 'angular auth passport secret shh',
@@ -50,8 +52,7 @@ app.use(session({
   },
   store: new MongoStore({mongooseConnection: mongoose.connection})
 }));
-require('./passport/serializers');
-require('./passport/local');
+
 app.use(passport.initialize());
 app.use(passport.session());
 

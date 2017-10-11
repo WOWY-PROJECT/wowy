@@ -41,7 +41,8 @@ import { FoundArticlesComponent } from './found-articles/found-articles.componen
     RouterModule.forRoot(routes),
     AgmCoreModule.forRoot({
       // apiKey: 'AIzaSyB-DfsZKYeYeWSaycvNrkVe-x_lseyD8i8'
-      apiKey: 'AIzaSyD6AD8ltoPLTqS8ahgnWXfwkK9JLiYcdTw'
+      //apiKey: 'AIzaSyD6AD8ltoPLTqS8ahgnWXfwkK9JLiYcdTw'
+      apiKey: 'AIzaSyCIr1VifCeR1UccrMG4YZEKsIp5Yk09VJU'
     })
   ],
   providers: [AuthService, IsLoggedInService, ArticleService, CreateArticleComponent],

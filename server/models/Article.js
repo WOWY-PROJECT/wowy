@@ -1,17 +1,20 @@
 const mongoose = require('mongoose');
+const Schema   = mongoose.Schema;
 
 const articleSchema = new mongoose.Schema({
+  creator: {
+    type: Schema.Types.ObjectId, ref: "User"
+  },
   name: {
     type: String,
-    required: [true, 'Article name is required']
+    required: true
   },
   description: {
     type: String,
-    required: [true, 'Article description is required']
+    required: true
   },
   image: {
-    type: String,
-    default: ''
+    type: String
   },
   lat: {
     type: Number

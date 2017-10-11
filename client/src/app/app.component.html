@@ -22,7 +22,7 @@
         <li *ngIf="!user"><a [routerLink]="['/login']">Login</a></li>
         <li *ngIf="!user"><a [routerLink]="['/signup']">Signup</a></li>
         <li *ngIf="!user"><a [routerLink]="['/article-list']">Article List</a></li>
-        <li *ngIf="user"><a [routerLink]="['/create-article']">Create Article</a></li>
+        <li ><a [routerLink]="['/create-article']">Create Article</a></li>
         <button *ngIf="user" (click)="logout()">Logout</button>
       </ul>
       <form class="navbar-form navbar-left">
