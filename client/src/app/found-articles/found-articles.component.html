@@ -1,7 +1,7 @@
 <div class="container">
   <ul class="list-group">
     <li *ngFor="let article of articlesFound" class="list-group-item clearfix">
-      <img class="img-responsive img-rounded" [src]="'http://localhost:3000' + article.image" height=100 alt=""/>
+      <img class="img-responsive img-rounded" [src]="'https://wowy-project.herokuapp.com' + article.image" height=100 alt=""/>
       <h3 class="list-group-item-heading">
         {{ article.name }}
       </h3>
