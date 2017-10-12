@@ -66,7 +66,7 @@ router.get('/articles/:id', checkIDParam, (req, res) => {
       let articuloNuevo = {
         username : p.username,
         name : p.name,
-        image : "http://localhost:3000" + p.image,
+        image : "http://wowy-project.herokuapp.com" + p.image,
         description : p.description,
         lat: p.lat,
         lng: p.lng,
