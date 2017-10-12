@@ -25,7 +25,6 @@ article;
 
     ngOnInit() {
       this.route.params.subscribe(params => {
-        console.log(`El parametro recibido es: ${params['id']}`);
         this.getArticle(params['id'])
       });
     }
