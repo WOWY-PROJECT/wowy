@@ -1,3 +1,8 @@
 * {
   font-family: Acme;
 }
+
+.loguito {
+  position: relative;
+  bottom: 14px;
+}

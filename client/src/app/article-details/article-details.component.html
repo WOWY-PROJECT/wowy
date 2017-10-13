@@ -38,7 +38,7 @@
 	      </div> <!-- end column2 -->
 
 				<div class="column3">
-					<agm-map [latitude]=article.lat [longitude]="article.lng">
+					<agm-map [zoom]="zoom" [latitude]=article.lat [longitude]="article.lng">
 					<agm-marker [latitude]="article.lat" [longitude]="article.lng"></agm-marker>
 					</agm-map>
 				</div>

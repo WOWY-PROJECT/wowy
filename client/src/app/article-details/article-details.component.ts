@@ -17,6 +17,7 @@ export class ArticleDetailsComponent implements OnInit {
 article;
   lat: Number
   lng: Number
+  zoom:number = 17;
 
   constructor(
     private router:Router,
