@@ -97,7 +97,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "/* You can add global styles to this file, and also import other style files */\nbody {\n\tbackground: #E8CBC0;\n\tbackground: linear-gradient(to left, #E8CBC0, #636FA4);\n\twidth: 100%;\n\theight: auto;\n\tpadding-bottom: 80px;\n}\n\n* {\n  font-family: Acme;\n}\n\n.footercito {\n\theight: 150px;\n\twidth: 100%;\n\tbackground-color: black;\n}\n", ""]);
+exports.push([module.i, "/* You can add global styles to this file, and also import other style files */\nbody {\n\tbackground: #E8CBC0;\n\tbackground: linear-gradient(to left, #E8CBC0, #636FA4);\n\twidth: 100%;\n\theight: auto;\n\tpadding-bottom: 80px;\n}\n\n* {\n  font-family: Acme;\n}\n\n.footercito {\n\theight: 150px;\n\twidth: 100%;\n\tbackground-color: black;\n}\n\n.alargada {\n\twidth: 300px;\n}\n", ""]);
 
 // exports
 
