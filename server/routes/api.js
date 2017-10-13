@@ -28,9 +28,6 @@ router.get('/articles', (req, res, next) => {
 
 /* CREATE a new Article. */
 router.post('/newArticle',upload.single('file'), (req, res, next) => {
-  console.log("CREATE NEW ARTICLE");
-  console.log(req.user);
-  console.log(req.file)
   const theArticle = new Article({
     creator: req.body.creator,
     name: req.body.name,

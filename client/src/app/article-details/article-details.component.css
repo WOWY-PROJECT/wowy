@@ -1,5 +1,5 @@
 agm-map {
-  height: 400px;
+  height: 200px;
   width: 100%;
 }
 
@@ -141,6 +141,11 @@ code {
   font: inherit;
 }
 
+.buttons {
+  position: relative;
+  bottom: 75px;
+}
+
 
 /*@media (max-width: 320px) {
   .jumbotron h1 {
@@ -201,6 +206,8 @@ a:hover {
   z-index: 1;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .hero:before {
@@ -211,8 +218,8 @@ a:hover {
   overflow: hidden;
   top: 0;
   left: 0;
-  background: red;
-  background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/hobbit_bg.jpg");
+  /*background: red;
+  background: url("article.image");*/
   z-index: -1;
   transform: skewY(-2.2deg);
   transform-origin: 0 0;
@@ -296,6 +303,14 @@ a:hover {
   padding-top: 30px;
   margin-left: 20px;
   width: 480px;
+  float: left;
+}
+
+.column3 {
+  padding-left: 41px;
+  padding-top: 30px;
+  margin-left: 20px;
+  width: 332px;
   float: left;
 }
 

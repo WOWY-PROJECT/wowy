@@ -19,6 +19,7 @@ import { FileUploadModule } from "ng2-file-upload";
 import { AgmCoreModule } from '@agm/core';
 import { LostArticlesComponent } from './lost-articles/lost-articles.component';
 import { FoundArticlesComponent } from './found-articles/found-articles.component';
+import { FilterPipe } from './filter.pipe';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { FoundArticlesComponent } from './found-articles/found-articles.componen
     ArticleListComponent,
     CreateArticleComponent,
     LostArticlesComponent,
-    FoundArticlesComponent
+    FoundArticlesComponent,
+    FilterPipe
   ],
   imports: [
     FileUploadModule,

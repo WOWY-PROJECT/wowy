@@ -53,8 +53,6 @@ export class CreateArticleComponent implements OnInit {
 
 
   create(){
-    //console.log(user)
-    console.log("FUNCION CREATE")
     let address = this.newArticle.street + ',' + this.newArticle.city + ',' + this.newArticle.country;
     this.articleService.getGeoData(address).subscribe( result => {
       this.newArticle.lat = result.json().results[0].geometry.location.lat;
@@ -78,6 +76,9 @@ export class CreateArticleComponent implements OnInit {
       };
 
      this.uploader.uploadAll();
+     this.uploader.onCompleteItem = () => {
+       this.router.navigate(['/'])
+           }
     })
   }
 

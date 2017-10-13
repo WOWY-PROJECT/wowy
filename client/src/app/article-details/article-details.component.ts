@@ -24,6 +24,7 @@ article;
     private articleService: ArticleService) { }
 
     ngOnInit() {
+      console.log(this)
       this.route.params.subscribe(params => {
         this.getArticle(params['id'])
       });
@@ -32,6 +33,7 @@ article;
     getArticle(id) {
       this.articleService.get(id)
         .subscribe((article) => {
+          console.log(article)
           this.article = article;
           this.lat = article.lat
           this.lng = article.lng

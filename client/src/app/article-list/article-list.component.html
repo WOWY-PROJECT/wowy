@@ -2,47 +2,21 @@
     <div class="container">
       <ul class="list-group">
         <li *ngFor="let article of articles" class="list-group-item clearfix">
-          <img class="img-responsive img-rounded" [src]="'http://wowy-project.herokuapp.com' + article.image" height=100 alt=""/>
+          <img class="img-responsive img-rounded alargada" [src]="'http://wowy-project.herokuapp.com' + article.image" height="100" alt=""/>
           <h3 class="list-group-item-heading">
             {{ article.name }}
           </h3>
           <p class="list-group-item-text lead">
             {{ article.description }}
-            <br />
-            <a [routerLink]="['/article-details', article._id]"><small>Details&#8230;</small></a>
+            <!-- <br />
+            <a [routerLink]="['/article-details', article._id]"><small>Details&#8230;</small></a> -->
           </p>
-
-
-
-          <!-- Button trigger modal -->
-          <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-            Launch demo modal
-          </button>
-
-          <!-- Modal -->
-          <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                  <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-                </div>
-                <div class="modal-body">
-                  ...
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-              </div>
-            </div>
-          </div>
 
 
 
 
           <div class="btn-toolbar pull-right" role="toolbar" aria-label="">
-            <div class="btn-group">
+            <!-- <div class="btn-group">
               <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-fw fa-list"></i> <span class="caret"></span></button>
               <ul class="dropdown-menu">
                 <li><a href="#">Add to new list</a></li>
@@ -51,9 +25,9 @@
                 <li><a href="#">Another list</a></li>
                 <li><a href="#">Third list</a></li>
               </ul>
-            </div>
-            <a href="#" class="btn btn-default">Add to cart</a>
-            <a href="#" class="btn btn-primary">$29.99</a>
+            </div> -->
+            <!-- <a href="#" class="btn btn-default">Add to cart</a> -->
+            <a [routerLink]="['/article-details', article._id]" class="btn btn-primary">Details</a>
           </div>
         </li>
         <!-- <li class="list-group-item active clearfix">
